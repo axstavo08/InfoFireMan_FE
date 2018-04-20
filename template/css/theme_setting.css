@@ -1,0 +1,120 @@
+#theme-setting {
+  position: fixed;
+  right: -250px;
+  top: 120px;
+  padding: 10px 13px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-right: 0;
+  width: 250px;
+  z-index: 9999;
+  -webkit-transition: 0.4s all ease-in-out;
+  transition: 0.4s all ease-in-out;
+}
+#theme-setting .btn-theme-setting {
+  padding: 15px;
+  background: #ffffff;
+  position: absolute;
+  z-index: 9999;
+  left: -57px;
+  border: 1px solid;
+  border-color: #e5e5e5 transparent #e5e5e5 #e5e5e5;
+  top: -1px;
+}
+#theme-setting .btn-theme-setting i {
+  font-size: 30px;
+  color: #94cc55;
+  line-height: 25px;
+}
+#theme-setting .btn-theme-setting:hover,
+#theme-setting .btn-theme-setting:focus {
+  color: #999999;
+  outline: none;
+}
+#theme-setting .content-theme-setting ul#list-color li {
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  border: 5px solid transparent;
+  margin: 0 5px;
+}
+#theme-setting .content-theme-setting ul#list-color li.green-dark {
+  background: #594857;
+  border-color: #488c6c;
+}
+#theme-setting .content-theme-setting ul#list-color li.red-dark {
+  background: #594857;
+  border-color: #bf4346;
+}
+#theme-setting .content-theme-setting ul#list-color li.pink-dark {
+  background: #594857;
+  border-color: #bf3773;
+}
+#theme-setting .content-theme-setting ul#list-color li.blue-dark {
+  background: #594857;
+  border-color: #0a819c;
+}
+#theme-setting .content-theme-setting ul#list-color li.yellow-dark {
+  background: #594857;
+  border-color: #f2994b;
+}
+#theme-setting .content-theme-setting ul#list-color li.green-grey {
+  background: #4b5d67;
+  border-color: #488c6c;
+}
+#theme-setting .content-theme-setting ul#list-color li.red-grey {
+  background: #4b5d67;
+  border-color: #bf4346;
+}
+#theme-setting .content-theme-setting ul#list-color li.pink-grey {
+  background: #4b5d67;
+  border-color: #bf3773;
+}
+#theme-setting .content-theme-setting ul#list-color li.blue-grey {
+  background: #4b5d67;
+  border-color: #0a819c;
+}
+#theme-setting .content-theme-setting ul#list-color li.yellow-grey {
+  background: #4b5d67;
+  border-color: #f2994b;
+}
+#theme-setting .content-theme-setting ul#list-color li.yellow-green {
+  background: #007451;
+  border-color: #CCA32F;
+}
+#theme-setting .content-theme-setting ul#list-color li.orange-grey {
+  background: #322F2B;
+  border-color: #D94E37;
+}
+#theme-setting .content-theme-setting ul#list-color li.pink-blue {
+  background: #40516F;
+  border-color: #DC6767;
+}
+#theme-setting .content-theme-setting ul#list-color li.pink-violet {
+  background: #554161;
+  border-color: #E82A62;
+}
+#theme-setting .content-theme-setting ul#list-color li.orange-violet {
+  background: #554161;
+  border-color: #FF422B;
+}
+#theme-setting .content-theme-setting ul#list-color li.pink-green {
+  background: #456445;
+  border-color: #FF5E70;
+}
+#theme-setting .content-theme-setting ul#list-color li.pink-brown {
+  background: #573F2F;
+  border-color: #A21E46;
+}
+#theme-setting .content-theme-setting ul#list-color li.orange-blue {
+  background: #33485C;
+  border-color: #E74C3C;
+}
+#theme-setting .content-theme-setting ul#list-color li.yellow-blue {
+  background: #417CB2;
+  border-color: #FFC34C;
+}
+#theme-setting .content-theme-setting ul#list-color li.green-blue {
+  background: #417CB2;
+  border-color: #66B354;
+}
