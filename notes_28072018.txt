@@ -1,0 +1,32 @@
+filtros de departamentos, se usa la carga inicial de filtros
+
+filtro de departamentos sera multiple visualmente
+
+filtros de provincias, solo admite un id de departamento, no sera multiple
+
+si se selecciona mas de un departamento, no se filtrara nada en provincias y se colocara id de busqueda para provincias el 0
+
+solo se buscara por provincia si se selecciona un departamento
+
+
+
+para las estadisticas de busqueda de emergencias, se admite ids grupales para todos, tipos, estados, departamentos, 
+y 0 en provincias si es multiple en departamentos sino la provincia seleccionada
+
+para las estadisticas de 24 horas, se admite multiples en idsde tipos
+
+para estadisticas de tipos de emergencias y estados todo ok
+
+para estadisticas de departamentos dependera de los filtros de departamentos, si selecciona uno o mas,
+	para la carga inicial seran todos los departamentos
+	
+para estadisticas de provincias y distritos, dependera de lo seleccionado en estadisticas de departamentos
+
+para carga inicial en estadisticas de provincias y distritos sera de lima,
+
+osea en departamentos todos, provincias es lima, distrito es lima
+
+agregar un boton de buscar para resultado, se busca en provincias el departamento buscado y en distritos la provincia que sale primero 
+del resultado
+
+y si se selecciona una provincia se busca por esa provincia en estadisticas de distritos
