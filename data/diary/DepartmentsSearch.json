@@ -1,0 +1,23 @@
+[
+    {
+        "XCount": 104,
+        "XPercent": 85.2459,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "idDepartId": 1,
+        "nbDepartName": "LIMA"
+    },
+    {
+        "XCount": 17,
+        "XPercent": 13.9344,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "idDepartId": 2,
+        "nbDepartName": "CALLAO"
+    },
+    {
+        "XCount": 1,
+        "XPercent": 0.8197,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "idDepartId": 0,
+        "nbDepartName": "OTROS"
+    }
+]

@@ -1,0 +1,10 @@
+[
+    {
+        "idStatusId": 1,
+        "nbStatusName": "ATENDIENDO"
+    },
+    {
+        "idStatusId": 2,
+        "nbStatusName": "CERRADO"
+    }
+]

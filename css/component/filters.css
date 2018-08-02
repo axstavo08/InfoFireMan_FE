@@ -1,0 +1,212 @@
+/*
+* Author: Gustavo Ramos Montalvo
+* Project: info-bomberos
+*/
+
+/*Importacion de media queries para template*/
+@import "mq_filters.css";
+
+/* Filters Parent Style
+**
+*/
+#filters {
+    position: fixed;
+    right: -450px;
+    top: 65px;
+    padding: 10px 13px;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-right: 0;
+    width: 450px;
+    z-index: 9999;
+    -webkit-transition: 0.4s all ease-in-out;
+    -ms-transition: 0.4s all ease-in-out;
+    -moz-transition: 0.4s all ease-in-out;
+    transition: 0.4s all ease-in-out;
+}
+
+.filters-fit-768 {
+    right: -450px;
+    width: 450px !important;
+}
+
+.filters-fit-768_405 {
+    right: -350px;
+    width: 350px !important;
+}
+
+.filters-fit-405_360 {
+    right: -305px;
+    width: 305px !important;
+}
+
+.filters-fit-360_335 {
+    right: -280px;
+    width: 280px !important;
+}
+
+.filters-fit-335_320 {
+    right: -265px;
+    width: 265px !important;
+}
+
+.filters-fit-320 {
+    right: -250px;
+    width: 250px !important;
+}
+
+/* Filters Button Action Style
+**
+*/
+#filters .btn-action-filters {
+    padding: 15px;
+    background: #ffffff;
+    position: absolute;
+    z-index: 9999;
+    left: -57px;
+    border: 1px solid;
+    border-color: #e5e5e5 transparent #e5e5e5 #e5e5e5;
+    top: -1px;
+    border-radius: 8px 0 0 10px;
+}
+
+#filters .btn-action-filters i,
+#filters .btn-action-filters:active i {
+    font-size: 30px;
+    color: #00C0EF;
+    line-height: 25px;
+}
+
+#filters .btn-action-filters:hover i {
+    color: #999999;
+    outline: none;
+}
+
+/* Select2 Styles
+**
+*/
+.select2-results__option .wrap:before{
+    font-family: fontAwesome;
+    color: #0d0d0d;
+    content: "\f096";
+    width: 25px;
+    height: 25px;
+    padding-right: 3%;
+}
+
+.select2-results__option[aria-selected=true] .wrap:before{
+    content: "\f14a";
+    color: #0d0d0d;
+}
+
+.select2-results__option[aria-selected=true]:hover .wrap:before{
+    content: "\f14a";
+    color: #ffffff;
+}
+
+.select2-container--bootstrap.select2-container--open {
+    z-index: 10000;
+}
+
+.select2-search__field {
+    border-radius: 3px;
+}
+
+.select2-selection__rendered {
+    line-height: 28px !important;
+}
+
+.select2-multiple {
+    width: 100%;
+}
+
+.select2.select2-container {
+    width: 100% !important;
+}
+
+.input-danger-cust {
+	-webkit-transition: all 0.30s ease-in-out !important;
+	-moz-transition: all 0.30s ease-in-out !important;
+	-ms-transition: all 0.30s ease-in-out !important;
+	-o-transition: all 0.30s ease-in-out !important;
+	outline: none !important;
+	border-color: rgba(174, 46, 30, 1) !important;
+}
+
+.input-danger-cust:focus,
+.input-danger-cust:active {
+	-moz-box-shadow:    0 0 5px rgba(174, 46, 30, 1) !important;
+    -webkit-box-shadow: 0 0 5px rgba(174, 46, 30, 1) !important;
+	box-shadow: 0 0 5px rgba(174, 46, 30, 1) !important;
+	border: 1px solid rgba(174, 46, 30, 1) !important;
+}
+
+/* Component Styles
+**
+*/
+.filter-element {
+    line-height: 30px;
+}
+
+.filter-bottom-separate {
+    margin-bottom: 3%;
+}
+
+.select2-selection--single[aria-expanded=false] {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+}
+
+.select2-selection--single[aria-expanded=true] {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
+
+/* Date Styles
+*
+*/
+.custom-date-component {
+    border-radius: 5px;
+}
+
+.date-picker-wrapper {
+	z-index: 10000 !important;
+}
+
+.date-picker-wrapper .date-range-length-tip {
+  background-color: #006622;
+}
+
+.date-picker-wrapper .date-range-length-tip:after {
+  border-top: 4px solid #006622;
+}
+
+.fit-top-datepicker {
+    top: -225px !important;
+}
+
+/* Filters Content Style
+**
+*/
+/*#theme-setting .content-filters ul#list-color li {
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  border: 5px solid transparent;
+  margin: 0 5px;
+}*/
+
+/*.select2-results__option .wrap:before{
+    font-family:fontAwesome;
+    color:#999;
+    content:"\f096";
+    width:25px;
+    height:25px;
+    padding-right: 10px;
+
+}
+.select2-results__option[aria-selected=true] .wrap:before{
+    content:"\f14a";
+}*/

@@ -1,0 +1,64 @@
+/*
+* Author: Gustavo Ramos Montalvo
+* Project: info-bomberos
+*/
+
+/* Input Search Table MQ Styles
+**
+*/
+@media screen and (min-width: 1200px) {
+    .search-input-width {
+        width: 25%;
+		margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 1199px) and (min-width: 992px) {
+    .search-input-width {
+        width: 30%;
+		margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 991px) and (min-width: 768px) {
+    .search-input-width {
+        width: 40%;
+		margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 500px) {
+    .search-input-width {
+        width: 60%;
+		margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 499px) and (min-width: 400px) {
+    .search-input-width {
+        width: 60%;
+		margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 399px) {
+    .search-input-width {
+        width: 100%;
+		margin: 0 auto;
+    }
+}
+
+/* Table MQ Styles
+**
+*/
+@media screen and (max-width: 991px) and (min-width: 645px) {
+    .column-custom::after {
+    	line-height: 45px;
+    }
+}
+
+@media screen and (max-width: 644px) {
+    .column-custom::after {
+    	line-height: 65px;
+    }
+}

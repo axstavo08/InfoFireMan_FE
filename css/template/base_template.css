@@ -1,0 +1,59 @@
+/*
+* Author: Gustavo Ramos Montalvo
+* Project: info-bomberos
+*/
+
+/*Importacion de media queries para template*/
+@import "mq_base_template.css";
+
+/* Content Styles
+**
+*/
+.wrapper-custom {
+    height: auto;
+    min-height: 100%;
+}
+
+/* Ellipsis Text Style
+**
+*/
+.textOverflow-boxTitles {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Titles and Subtitles Styles
+**
+*/
+.space-subtitle:before {
+    content: "\00a0";
+}
+
+.space-text:after {
+    content: "\00a0";
+}
+
+.comp-line-center {
+	line-height: 30px;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+/* Footer Styles
+**
+*/
+.footer-highlight {
+    color: #00a65a;
+}

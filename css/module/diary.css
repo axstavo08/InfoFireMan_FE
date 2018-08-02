@@ -1,0 +1,458 @@
+/*
+* Author: Gustavo Ramos Montalvo
+* Project: info-bomberos
+*/
+
+/*Importacion de estilos de filtros*/
+@import "../component/filters.css";
+
+/*Importacion de media queries para template*/
+@import "mq_diary.css";
+
+/* Table Styles
+**
+*/
+.row-info-cust {
+    margin-right: -30px;
+    margin-left: -30px;
+}
+
+/* Titles and Subtitles Styles
+**
+*/
+.space-callout:before {
+    content: "\00a0\00a0\00a0";
+}
+
+.text-size24 {
+    font-size: 24px;
+}
+
+/* Table Styles
+**
+*/
+.input-border {
+	border-radius: 4px;
+	border-color: rgb(85,85,85,.5);
+}
+
+.column-vertical-middle {
+	vertical-align: middle !important;
+}
+
+.dataTables_filter {
+	display: none;
+	visibility: hidden;
+}
+
+.table-bordered {
+	border: 1px solid #b3b3b3;
+}
+
+.dataTables_info {
+	white-space: pre-line !important;
+}
+
+.column-custom {
+    text-align: center;
+	vertical-align: middle !important;
+}
+
+.dataTables_scrollHeadInner > table > thead > tr {
+	font-size: 1.5rem;
+}
+
+.dataTables_scrollHeadInner > table > thead > tr > th {
+	background: #00a65a;
+	color: #ffffff;
+}
+
+.dataTables_scrollBody > table > tbody > tr {
+	font-size: 1.2rem;
+}
+
+.component-localization, .component-localization:focus {
+	color: #3c8dbc;
+}
+
+.align-left-mandatory {
+    text-align: left !important;
+}
+
+.table-bordered > tbody > tr > td {
+    border: 1px solid #b3b3b3;
+}
+
+/* Tab Styles
+**
+*/
+.nav-tabs-custom {
+    border-width: 1px;
+    border-style: groove;
+    border-color: #dee5ed;
+}
+
+.nav-tabs-custom > .tab-content {
+    background: #dee5ed;
+}
+
+.nav-tabs-custom > .nav.nav-tabs > li.active {
+    font-weight: bold;
+}
+
+/* Modal Styles
+**
+*/
+.modal-header-title {
+	color: #3c8cbb;
+	font-weight: bold;
+}
+
+.modal-body-message {
+	height: 100px;
+}
+
+.modal-body-color {
+	background: #ecf0f5;
+}
+
+.modal {
+    z-index: 12000;
+}
+
+/* Map Styles
+**
+*/
+.map-diary {
+    height: 550px;
+}
+
+.map-iw-parent-container {
+	-moz-user-select: text;
+	-webkit-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+	font-family: Roboto,Arial;
+	width: 200px;
+	color: #1a1a1a;
+	font-size: 1.2rem;
+}
+
+.map-iw-title {
+	color: #3c8dbc;
+	font-weight: bold;
+	margin-bottom: 8px;
+	font-size: 1.3rem;
+}
+
+.map-iw-content-status {
+	color: #1a1a1a;
+	font-weight: bold;
+	font-size: 1.1rem;
+}
+
+.map-iw-content {
+	color: #1a1a1a;
+	font-size: 1rem;
+}
+
+#markerLayer img {
+	animation: pulse .5s infinite alternate;
+	-ms-animation: pulse .5s infinite alternate;
+	-webkit-animation: pulse .5s infinite alternate;
+	-moz-animation: pulse .5s infinite alternate;
+	transform-origin: center;
+	-ms-transform-origin: center;
+	-webkit-transform-origin: center;
+	-moz-transform-origin: center;
+}
+
+@keyframes pulse {
+    to {
+		transform: scale(0.7);
+		-ms-transform: scale(0.7);
+		-webkit-transform: scale(0.7);
+		-moz-transform: scale(0.7);
+    }
+}
+
+/*@-webkit-keyframes pulse{
+    to {
+		transform: scale(0.7);
+		-ms-transform: scale(0.7);
+		-webkit-transform: scale(0.7);
+		-moz-transform: scale(0.7);
+    }
+}*/
+
+/* Chart Styles
+**
+*/
+.chart-diary {
+    height: 300px;
+}
+
+.chart-24hours-diary {
+    height: 400px;
+}
+
+/* Info Styles
+**
+*/
+.info-box-icon-cust {
+    font-size: 0 !important;
+}
+
+.info-box-content-cust {
+    color: #ffffff;
+}
+
+.info-box-natural-disaster {
+    background-color: #4D2806 !important;
+}
+
+.info-box-incident {
+    background-color: #C03638 !important;
+}
+
+.info-box-medical-emergencie {
+    background-color: #008808 !important;
+}
+
+.info-box-rescue {
+    background-color: #5418A8 !important;
+}
+
+.info-box-special-service {
+    background-color: #0085A6 !important;
+}
+
+.info-box-vehicular-accident {
+    background-color: #C4B919 !important;
+}
+
+.info-box-fire {
+    background-color: #D6580F !important;
+}
+
+.info-align-content {
+    text-align: left;
+}
+
+.row-info-container-fixed {
+    margin-right: -15px !important;
+    margin-left: -15px !important;
+}
+
+/* Container Styles
+**
+*/
+.box .overlay > .overlay-message {
+    position: absolute;
+    top: 50%;
+    color: #dd4b39;
+    font-size: 2.5rem;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Last Emergencie Container Style
+**
+*/
+#lastEmergencie {
+    position: fixed;
+    right: -450px;
+    top: 200px;
+    padding: 10px 13px;
+    background: #b30000;
+    border: 1px solid #800000;
+    border-right: 0;
+    width: 450px;
+    z-index: 1000;
+    -webkit-transition: 0.4s all ease-in-out;
+    -ms-transition: 0.4s all ease-in-out;
+    -moz-transition: 0.4s all ease-in-out;
+    transition: 0.4s all ease-in-out;
+}
+
+.lastEmergencie-content-fixed {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.contLastEmergencie-content-fixed {
+    padding: 5px 10px;
+    color: #ffffff;
+}
+
+#lastEmergencie .btn-action-lastEmergencie {
+    padding: 15px;
+    background: #b30000;
+    position: absolute;
+    z-index: 1000;
+    left: -63px;
+    border: 1px solid;
+    border-color: #800000 transparent #800000 #800000;
+    top: -1px;
+    border-radius: 8px 0 0 10px;
+}
+
+#lastEmergencie .btn-action-lastEmergencie i,
+#lastEmergencie .btn-action-lastEmergencie:active i {
+    font-size: 30px;
+    color: #ffffff;
+    line-height: 50px;
+}
+
+#lastEmergencie .btn-action-lastEmergencie:hover i {
+    color: #999999;
+    outline: none;
+}
+
+/* Frame Slider Container Style
+**
+*/
+.frame {
+	height: 100px;
+	line-height: inherit;
+	overflow: hidden;
+}
+.frame ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-size: 50px;
+}
+.frame ul li {
+	float: left;
+	width: 280px;
+	height: 100%;
+	margin: 0 1px 0 0;
+	padding: 0;
+	background: transparent;
+	color: #ddd;
+	text-align: center;
+	cursor: pointer;
+}
+.frame ul li.active {
+	color: #fff;
+	background: transparent;
+}
+
+.sly-frame-parent {
+    overflow: hidden;
+}
+
+.sly-frame-main {
+    transform: translateZ(0px) translateX(0px);
+    -webkit-transform: translateZ(0px) translateX(0px);
+    -ms-transform: translateZ(0px) translateX(0px);
+    -moz-transform: translateZ(0px) translateX(0px);
+    width: 6840px;
+}
+
+/* Scrollbar Style
+**
+*/
+.scrollbar {
+	margin: 0 0 1em 0;
+	height: 2px;
+	background: #ccc;
+	line-height: 0;
+}
+.scrollbar .handle {
+	width: 100px;
+	height: 100%;
+	background: #292a33;
+	cursor: pointer;
+}
+.scrollbar .handle .mousearea {
+	position: absolute;
+	top: -9px;
+	left: 0;
+	width: 100%;
+	height: 20px;
+}
+
+.scrollbar-handle {
+    transform: translateZ(0px) translateX(67px);
+    -webkit-transform: translateZ(0px) translateX(67px);
+    -ms-transform: translateZ(0px) translateX(67px);
+    -moz-transform: translateZ(0px) translateX(67px);
+    width: 168px;
+}
+
+/* Pages Style
+**
+*/
+.pages {
+	list-style: none;
+	margin: 20px 0;
+	padding: 0;
+	text-align: center;
+}
+.pages li {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	margin: 0 4px;
+	text-indent: -999px;
+	border-radius: 10px;
+	cursor: pointer;
+	overflow: hidden;
+	background: #fff;
+	box-shadow: inset 0 0 0 1px rgba(0,0,0,.2);
+}
+.pages li:hover {
+	background: #aaa;
+}
+.pages li.active {
+	background: #666;
+}
+
+/* Controls Style
+**
+*/
+.controls { margin: 25px 0; text-align: center; }
+
+/* Effects Style
+**
+*/
+.effects {
+	height: 200px;
+	line-height: 200px;
+	-webkit-perspective: 800px;
+	-ms-perspective: 800px;
+	perspective: 800px;
+	-webkit-perspective-origin: 50% 50%;
+	-ms-perspective-origin: 50% 50%;
+	perspective-origin: 50% 50%;
+	overflow-y: show;
+}
+.effects ul {
+	-webkit-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.effects ul li {
+	position: relative;
+	margin: 0 -20px;
+	-webkit-transform: rotateY(60deg) scale(0.9);
+	-ms-transform: rotateY(60deg) scale(0.9);
+	transform: rotateY(60deg) scale(0.9);
+	-webkit-transition: -webkit-transform 300ms ease-out;
+	transition: transform 300ms ease-out;
+}
+.effects ul li.active {
+	z-index: 10;
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+}
+.effects ul li.active ~ li {
+	-webkit-transform: rotateY(-60deg) scale(0.9);
+	-ms-transform: rotateY(-60deg) scale(0.9);
+	transform: rotateY(-60deg) scale(0.9);
+}

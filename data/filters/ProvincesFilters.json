@@ -1,0 +1,57 @@
+[
+    {
+        "idDepartId": 1,
+        "idProvId": 1,
+        "nbProvName": "LIMA"
+    },
+    {
+        "idDepartId": 1,
+        "idProvId": 2,
+        "nbProvName": "YAUYOS"
+    },
+    {
+        "idDepartId": 1,
+        "idProvId": 3,
+        "nbProvName": "HUAURA"
+    },
+    {
+        "idDepartId": 1,
+        "idProvId": 4,
+        "nbProvName": "OYON"
+    },
+    {
+        "idDepartId": 1,
+        "idProvId": 5,
+        "nbProvName": "HUAROCHIRI"
+    },
+    {
+        "idDepartId": 1,
+        "idProvId": 6,
+        "nbProvName": "CANTA"
+    },
+    {
+        "idDepartId": 1,
+        "idProvId": 7,
+        "nbProvName": "CAÑETE"
+    },
+    {
+        "idDepartId": 1,
+        "idProvId": 8,
+        "nbProvName": "HUARAL"
+    },
+    {
+        "idDepartId": 1,
+        "idProvId": 9,
+        "nbProvName": "BARRANCA"
+    },
+    {
+        "idDepartId": 1,
+        "idProvId": 10,
+        "nbProvName": "CAJATAMBO"
+    },
+    {
+        "idDepartId": 2,
+        "idProvId": 11,
+        "nbProvName": "CALLAO"
+    }
+]

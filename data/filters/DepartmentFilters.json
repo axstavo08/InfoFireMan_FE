@@ -1,0 +1,14 @@
+[
+    {
+        "idDepartId": 1,
+        "nbDepartName": "LIMA"
+    },
+    {
+        "idDepartId": 2,
+        "nbDepartName": "CALLAO"
+    },
+    {
+        "idDepartId": 0,
+        "nbDepartName": "OTROS"
+    }
+]

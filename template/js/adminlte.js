@@ -215,6 +215,9 @@ throw new Error('AdminLTE requires jQuery')
     $(this.element).children(Selector.body + ', ' + Selector.footer)
       .slideDown(this.options.animationSpeed, function () {
         $(this.element).trigger(expandedEvent);
+        console.log("box expand");
+        console.log($(this.element));
+        $(window).trigger('box-expand-component');
       }.bind(this));
   };
 
@@ -1083,7 +1086,7 @@ throw new Error('AdminLTE requires jQuery')
   };
 
   // Private
-  
+
   Tree.prototype._setUpListeners = function () {
     var that = this;
 

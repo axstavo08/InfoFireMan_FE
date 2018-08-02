@@ -1,0 +1,452 @@
+[
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "00",
+        "hrHourAM": "12 AM",
+        "idDimTime": 241,
+        "idTypeId": 3,
+        "nbEmergType": "MATERIALES PELIGROSOS (INCIDENTE)"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "00",
+        "hrHourAM": "12 AM",
+        "idDimTime": 4015,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 2,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "01",
+        "hrHourAM": "01 AM",
+        "idDimTime": 11659,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 3,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "01",
+        "hrHourAM": "01 AM",
+        "idDimTime": 10215,
+        "idTypeId": 4,
+        "nbEmergType": "ACCIDENTE VEHICULAR"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "01",
+        "hrHourAM": "01 AM",
+        "idDimTime": 12243,
+        "idTypeId": 3,
+        "nbEmergType": "MATERIALES PELIGROSOS (INCIDENTE)"
+    },
+    {
+        "XCount": 4,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "02",
+        "hrHourAM": "02 AM",
+        "idDimTime": 20544,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "02",
+        "hrHourAM": "02 AM",
+        "idDimTime": 20709,
+        "idTypeId": 2,
+        "nbEmergType": "INCENDIO"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "03",
+        "hrHourAM": "03 AM",
+        "idDimTime": 31005,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "03",
+        "hrHourAM": "03 AM",
+        "idDimTime": 34351,
+        "idTypeId": 4,
+        "nbEmergType": "ACCIDENTE VEHICULAR"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "03",
+        "hrHourAM": "03 AM",
+        "idDimTime": 34111,
+        "idTypeId": 2,
+        "nbEmergType": "INCENDIO"
+    },
+    {
+        "XCount": 2,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "04",
+        "hrHourAM": "04 AM",
+        "idDimTime": 40840,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 2,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "05",
+        "hrHourAM": "05 AM",
+        "idDimTime": 50117,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 2,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "05",
+        "hrHourAM": "05 AM",
+        "idDimTime": 50700,
+        "idTypeId": 4,
+        "nbEmergType": "ACCIDENTE VEHICULAR"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "05",
+        "hrHourAM": "05 AM",
+        "idDimTime": 50450,
+        "idTypeId": 2,
+        "nbEmergType": "INCENDIO"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "06",
+        "hrHourAM": "06 AM",
+        "idDimTime": 60835,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 3,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "06",
+        "hrHourAM": "06 AM",
+        "idDimTime": 60139,
+        "idTypeId": 4,
+        "nbEmergType": "ACCIDENTE VEHICULAR"
+    },
+    {
+        "XCount": 2,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "07",
+        "hrHourAM": "07 AM",
+        "idDimTime": 72104,
+        "idTypeId": 6,
+        "nbEmergType": "SERVICIO ESPECIAL"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "07",
+        "hrHourAM": "07 AM",
+        "idDimTime": 71703,
+        "idTypeId": 3,
+        "nbEmergType": "MATERIALES PELIGROSOS (INCIDENTE)"
+    },
+    {
+        "XCount": 4,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "07",
+        "hrHourAM": "07 AM",
+        "idDimTime": 72613,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 5,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "07",
+        "hrHourAM": "07 AM",
+        "idDimTime": 70427,
+        "idTypeId": 4,
+        "nbEmergType": "ACCIDENTE VEHICULAR"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "08",
+        "hrHourAM": "08 AM",
+        "idDimTime": 80504,
+        "idTypeId": 4,
+        "nbEmergType": "ACCIDENTE VEHICULAR"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "08",
+        "hrHourAM": "08 AM",
+        "idDimTime": 83935,
+        "idTypeId": 2,
+        "nbEmergType": "INCENDIO"
+    },
+    {
+        "XCount": 2,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "08",
+        "hrHourAM": "08 AM",
+        "idDimTime": 81617,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 3,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "09",
+        "hrHourAM": "09 AM",
+        "idDimTime": 91209,
+        "idTypeId": 6,
+        "nbEmergType": "SERVICIO ESPECIAL"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "09",
+        "hrHourAM": "09 AM",
+        "idDimTime": 95444,
+        "idTypeId": 3,
+        "nbEmergType": "MATERIALES PELIGROSOS (INCIDENTE)"
+    },
+    {
+        "XCount": 3,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "09",
+        "hrHourAM": "09 AM",
+        "idDimTime": 90912,
+        "idTypeId": 4,
+        "nbEmergType": "ACCIDENTE VEHICULAR"
+    },
+    {
+        "XCount": 5,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "09",
+        "hrHourAM": "09 AM",
+        "idDimTime": 91905,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 2,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "10",
+        "hrHourAM": "10 AM",
+        "idDimTime": 102837,
+        "idTypeId": 2,
+        "nbEmergType": "INCENDIO"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "10",
+        "hrHourAM": "10 AM",
+        "idDimTime": 105717,
+        "idTypeId": 3,
+        "nbEmergType": "MATERIALES PELIGROSOS (INCIDENTE)"
+    },
+    {
+        "XCount": 8,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "10",
+        "hrHourAM": "10 AM",
+        "idDimTime": 100622,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "10",
+        "hrHourAM": "10 AM",
+        "idDimTime": 104149,
+        "idTypeId": 4,
+        "nbEmergType": "ACCIDENTE VEHICULAR"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "11",
+        "hrHourAM": "11 AM",
+        "idDimTime": 114441,
+        "idTypeId": 6,
+        "nbEmergType": "SERVICIO ESPECIAL"
+    },
+    {
+        "XCount": 4,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "11",
+        "hrHourAM": "11 AM",
+        "idDimTime": 111036,
+        "idTypeId": 2,
+        "nbEmergType": "INCENDIO"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "11",
+        "hrHourAM": "11 AM",
+        "idDimTime": 112535,
+        "idTypeId": 5,
+        "nbEmergType": "RESCATE"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "11",
+        "hrHourAM": "11 AM",
+        "idDimTime": 110808,
+        "idTypeId": 3,
+        "nbEmergType": "MATERIALES PELIGROSOS (INCIDENTE)"
+    },
+    {
+        "XCount": 6,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "11",
+        "hrHourAM": "11 AM",
+        "idDimTime": 111152,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 10,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "12",
+        "hrHourAM": "12 PM",
+        "idDimTime": 120524,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 2,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "12",
+        "hrHourAM": "12 PM",
+        "idDimTime": 120405,
+        "idTypeId": 4,
+        "nbEmergType": "ACCIDENTE VEHICULAR"
+    },
+    {
+        "XCount": 2,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "13",
+        "hrHourAM": "01 PM",
+        "idDimTime": 130605,
+        "idTypeId": 4,
+        "nbEmergType": "ACCIDENTE VEHICULAR"
+    },
+    {
+        "XCount": 8,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "13",
+        "hrHourAM": "01 PM",
+        "idDimTime": 130114,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "14",
+        "hrHourAM": "02 PM",
+        "idDimTime": 141709,
+        "idTypeId": 4,
+        "nbEmergType": "ACCIDENTE VEHICULAR"
+    },
+    {
+        "XCount": 2,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "14",
+        "hrHourAM": "02 PM",
+        "idDimTime": 145305,
+        "idTypeId": 2,
+        "nbEmergType": "INCENDIO"
+    },
+    {
+        "XCount": 8,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "14",
+        "hrHourAM": "02 PM",
+        "idDimTime": 141622,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "14",
+        "hrHourAM": "02 PM",
+        "idDimTime": 144451,
+        "idTypeId": 3,
+        "nbEmergType": "MATERIALES PELIGROSOS (INCIDENTE)"
+    },
+    {
+        "XCount": 2,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "15",
+        "hrHourAM": "03 PM",
+        "idDimTime": 150731,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "15",
+        "hrHourAM": "03 PM",
+        "idDimTime": 155622,
+        "idTypeId": 2,
+        "nbEmergType": "INCENDIO"
+    },
+    {
+        "XCount": 2,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "15",
+        "hrHourAM": "03 PM",
+        "idDimTime": 150027,
+        "idTypeId": 6,
+        "nbEmergType": "SERVICIO ESPECIAL"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "15",
+        "hrHourAM": "03 PM",
+        "idDimTime": 151533,
+        "idTypeId": 4,
+        "nbEmergType": "ACCIDENTE VEHICULAR"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "16",
+        "hrHourAM": "04 PM",
+        "idDimTime": 165108,
+        "idTypeId": 2,
+        "nbEmergType": "INCENDIO"
+    },
+    {
+        "XCount": 1,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "hrHour": "16",
+        "hrHourAM": "04 PM",
+        "idDimTime": 161759,
+        "idTypeId": 1,
+        "nbEmergType": "EMERGENCIA MEDICA"
+    }
+]

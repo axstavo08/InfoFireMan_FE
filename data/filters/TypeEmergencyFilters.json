@@ -1,0 +1,30 @@
+[
+    {
+        "idTypeId": 1,
+        "nbTypeName": "EMERGENCIA MEDICA"
+    },
+    {
+        "idTypeId": 2,
+        "nbTypeName": "INCENDIO"
+    },
+    {
+        "idTypeId": 3,
+        "nbTypeName": "MATERIALES PELIGROSOS (INCIDENTE)"
+    },
+    {
+        "idTypeId": 4,
+        "nbTypeName": "ACCIDENTE VEHICULAR"
+    },
+    {
+        "idTypeId": 5,
+        "nbTypeName": "RESCATE"
+    },
+    {
+        "idTypeId": 6,
+        "nbTypeName": "SERVICIO ESPECIAL"
+    },
+    {
+        "idTypeId": 7,
+        "nbTypeName": "DESASTRES NATURALES"
+    }
+]

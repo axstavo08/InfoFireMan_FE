@@ -1,7 +1,7 @@
-/**
- * Project Name : info-bomberos
- * @author Gustavo Ramos M
- */
+/*
+* Author: Gustavo Ramos Montalvo
+* Project: info-bomberos
+*/
 
 define([], function() {
 

@@ -3,71 +3,366 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Informaci&oacute;n Bomberos - Diario</title>
+        <title>InfoBomberos - Diario</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+        <link rel="icon" type="image/png" href="images/icon_project.png" />
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="js/library/bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="js/library/bootstrap/css/bootstrap.css" />
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="js/library/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="js/library/font-awesome/css/font-awesome.min.css" />
+        <!-- Ionicons -->
+        <link rel="stylesheet" type="text/css" href="js/library/Ionicons/css/ionicons.min.css">
         <!-- Theme style -->
-        <link rel="stylesheet" href="template/css/AdminLTE.css" />
-        <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
-        <link rel="stylesheet" href="template/css/skins/skin-red-light.css" />
+        <link rel="stylesheet" type="text/css" href="template/css/AdminLTE.css" />
+        <!-- AdminLTE Skins -->
+        <link rel="stylesheet" type="text/css" href="template/css/skins/skin-green-light.min.css" />
         <!-- Google Font -->
-        <link rel="stylesheet" href="css/font/google-font.css" />
-        <!-- Smartflex -->
-        <!--<link rel="stylesheet" type="text/css" href="css/v2/smartflex-base.css" />-->
+        <link rel="stylesheet" type="text/css" href="css/font/google-font.css" />
+        <!-- InfoBomberos -->
+        <link rel="stylesheet" type="text/css" type="text/css" href="css/template/base_template.css" />
+        <!-- Page Load -->
+        <link rel="stylesheet" type="text/css" href="css/util/pageLoad.css" />
+        <!-- Select2 -->
+        <link rel="stylesheet" type="text/css" href="js/library/select2/dist/css/select2.min.css" />
+        <link rel="stylesheet" type="text/css" href="js/library/select2/bootstrap_theme/css/select2-bootstrap.min.css" />
+        <!-- Jquery Date Range Picker -->
+        <link rel="stylesheet" type="text/css" href="js/library/jquery-date-range-picker/dist/daterangepicker.min.css" />
+        <!-- Datatables -->
+        <link rel="stylesheet" type="text/css" href="js/library/datatables-1.10.16/css/dataTables.bootstrap.min.css"/>
+        <!-- Horizontal -->
+        <!--<link rel="stylesheet" type="text/css" href="js/library/sly-scroll/external/horizontal.css"/>-->
+        <!-- Diary Module -->
+        <link rel="stylesheet" type="text/css" type="text/css" href="css/module/diary.css" />
     </head>
-    <body id="main_body" class="hold-transition skin-red-light sidebar-mini scroll-hide">
+    <body id="main_body" data-js="main_body" class="hold-transition skin-green-light layout-top-nav scroll-hide">
         <div class="wrapper">
             <header class="main-header">
-                <a href="#" class="logo">
-                    <span class="logo-mini superbrand">IB</span>
-                    <span class="logo-lg superbrand">
-                        <img src="images/claropng.png" />
-                        <span class="space-subtitle">Info Bomberos</span>
-                    </span>
-                </a>
                 <nav class="navbar navbar-static-top">
-                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                        <span class="sr-only">Toggle navigation</span>
-                    </a>
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a id="lTitleHeader" data-js="lTitleHeader" href="#" class="navbar-brand"><b>Info</b>Bomberos</a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <i class="fa fa-bars"></i>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul id="main_nav" data-js="navOptions" class="nav navbar-nav">
+                                <li data-js="diary_nav" class=""><a href="#">Diario <!--<span class="sr-only">(current)</span>--></a></li>
+                                <li class="monthly_nav"><a href="#">Hist&oacute;rico</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </nav>
             </header>
-            <aside class="main-sidebar">
-                <section data-js="root_menu" class="sidebar">
-                    <ul id="sd_granularity" data-js="sd_granularity" class="sidebar-menu" data-widget="tree">
-                        <li id="sd_granularity_header" data-js="sd_granularity_header" class="header">Tiempo</li>
-                        <li id="sd_mob_diary" data-js="sd_mob_diary" class="treeview">
-                            <a href="#">
-                                <i class="fa fa-rss" aria-hidden="true"></i><span>Diario</span>
-                            </a>
-                        </li>
-                        <li id="sd_mob_monthly" data-js="sd_mob_monthly" class="treeview">
-                            <a href="#">
-                                <i class="fa fa-microchip" aria-hidden="true"></i><span>Mensual</span>
-                            </a>
-                        </li>
-                    </ul>
-                </section>
-            </aside>
-            <div class="content-wrapper">
-                <!--<div>
-                    <div id="block-page">
-                        <div id="circle-progress">
+            <div id="blockContainer" data-js="blockContainer" class="content-wrapper">
+                <div>
+                    <div id="block-page" data-js="block-page">
+                        <div id="circle-progress" data-js="circle-progress">
                             <strong></strong>
                         </div>
                     </div>
-                </div>-->
-                <section data-js="sectionContent" class="content">
-
-                </section>
+                </div>
+                <div class="container">
+                    <div id="filters" data-js="filters" data-status="close">
+                        <a href="#" data-toggle="dropdown" data-step="1" data-intro=""
+                            data-position="left" class="btn-action-filters"><i class="fa fa-filter"></i></a>
+                        <form id="filters-form" data-js="filters-form">
+                            <div class="content-theme-setting" id="filters-content" data-js="filters-content"></div>
+                        </form>
+                    </div>
+                    <div id="lastEmergencie" data-js="lastEmergencie" data-status="close">
+                        <a href="#" data-toggle="dropdown" data-step="1" data-intro=""
+                            data-position="left" class="btn-action-lastEmergencie"><i class="fa fa-bell"></i></a>
+                        <div class="content-theme-setting" id="lastEmergencie-content" data-js="lastEmergencie-content">
+                            <div class="row lastEmergencie-content-fixed">
+                                <div id="contLastEmergencie" data-js="contLastEmergencie" class="contLastEmergencie-content-fixed">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <h4><i class="icon fa fa-info"></i><span class="space-subtitle">&Uacute;ltima Emergencia</span></h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div id="contContentAddress" data-js="contContentAddress" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <h5 id="typeLastEmergencie" data-js="typeLastEmergencie">{{Type_Last_Emergencie}}</h5>
+                                            <span id="addressLastEmergencie" data-js="addressLastEmergencie">{{Address_Last_Emergencie}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <section data-js="sectionContent" class="content">
+                        <!--<div class="row">
+                            <button data-js="test" type="button" name="button">Test</button>
+                        </div>-->
+                        <div class="scrollbar row-info-container-fixed">
+            				<div class="handle scrollbar-handle">
+            					<div class="mousearea"></div>
+            				</div>
+            			</div>
+                        <div id="infoRootTypeEmergencie" data-js="infoRootTypeEmergencie" class="frame row-info-container-fixed sly-frame-parent">
+            				<ul id="infoParentTypeEmergencie" data-js="infoParentTypeEmergencie" class="clearfix sly-frame-main"></ul>
+            			</div>
+                        <div class="row">
+                            <div class="nav-tabs-custom">
+                                <ul id="tabContent" data-js="tabContent" class="nav nav-tabs">
+                                    <li class="active"><a href="#main" data-property="main" data-toggle="tab">General</a></li>
+                                    <li><a href="#charts" data-property="charts" data-toggle="tab">Gr&aacute;ficas</a></li>
+                                    <li><a href="#geographyc"data-property="geographyc" data-toggle="tab">Geogr&aacute;fico</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="main">
+                                        <div id="mapHelperContainer" data-js="mapHelperContainer" class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div id="mapEmergenciesOverlayContainer" data-js="mapEmergenciesOverlayContainer" data-overlay="hide" class="box box-default box-cus">
+                                                    <div class="box-header">
+                    									<h3 class="box-title textOverflow-boxTitles"><i class="fa fa-globe" aria-hidden="true"></i><span class="space-subtitle">Mapa</span></h3>
+                                                        <div class="box-tools">
+                                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                        </div>
+                    								</div>
+                                                    <div class="box-body">
+                                                        <div id="mEmergencies" data-js="mEmergencies" class="map-diary"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div id="tableEmergenciesOverlayContainer" data-js="tableEmergenciesOverlayContainer" data-overlay="hide" class="box box-default box-cus">
+                    								<div class="box-header">
+                    									<h3 class="box-title textOverflow-boxTitles"><i class="fa fa-table" aria-hidden="true"></i><span class="space-subtitle">Listado</span></h3>
+                                                        <div class="box-tools">
+                                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                        </div>
+                    								</div>
+                    								<div class="box-body">
+                    									<div class="row">
+                                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                                <input id="tEmergenciesSearch" data-js="tEmergenciesSearch" placeholder="Buscar" type="text" class="form-control input-border search-input-width pull-right"/>
+                                                            </div>
+                    									</div>
+                    									<div class="row">
+                                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                												<table id="tEmergencies" data-js="tEmergencies" class="cell-border display table table-bordered table-hover" cellspacing="0" width="100%">
+                													<thead>
+                														<tr>
+                                                                            <th></th>
+                															<th>Fecha y Hora</th>
+                															<th>Direcci&oacute;n/Distrito</th>
+                															<th>Tipo</th>
+                															<th>Estado</th>
+                															<th>M&aacute;quinas</th>
+                                                                            <th></th>
+                														</tr>
+                													</thead>
+                													<tbody>
+                													</tbody>
+                												</table>
+                                                            </div>
+                    									</div>
+                    								</div>
+                    							</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="charts">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div id="hours24OverlayContainer" data-js="hours24OverlayContainer" data-overlay="hide" class="box box-default box-cus">
+                                                    <div class="box-header">
+                    									<h3 class="box-title textOverflow-boxTitles"><i class="fa fa-line-chart" aria-hidden="true"></i><span class="space-subtitle">Reporte 24 Horas</span></h3>
+                                                        <div class="box-tools">
+                                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                        </div>
+                    								</div>
+                                                    <div class="box-body">
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                                <div id="c24Hours" data-js="c24Hours" class="chart-24hours-diary"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                <div id="typeStatusOverlayContainer" data-js="typeStatusOverlayContainer" data-overlay="hide" class="box box-default box-cus">
+                    								<div class="box-header">
+                    									<h3 class="box-title textOverflow-boxTitles"><i class="fa fa-pie-chart" aria-hidden="true"></i><span class="space-subtitle">Tipos de Estados</span></h3>
+                                                        <div class="box-tools">
+                                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                        </div>
+                    								</div>
+                    								<div class="box-body">
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
+                                                                <div id="cTypeStatus" data-js="cTypeStatus" class="chart-diary"></div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
+                                                                <table id="tTypeStatus" data-js="tTypeStatus" class="cell-border display table table-bordered table-hover" cellspacing="0" width="100%">
+                													<thead>
+                														<tr>
+                															<th>Estado</th>
+                															<th>Total</th>
+                															<th>%</th>
+                														</tr>
+                													</thead>
+                													<tbody>
+                													</tbody>
+                												</table>
+                                                            </div>
+                                                        </div>
+                    								</div>
+                    							</div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                <div id="typeEmergenciesOverlayContainer" data-js="typeEmergenciesOverlayContainer" data-overlay="hide" class="box box-default box-cus">
+                    								<div class="box-header">
+                    									<h3 class="box-title textOverflow-boxTitles"><i class="fa fa-pie-chart" aria-hidden="true"></i><span class="space-subtitle">Tipos de Emergencias</span></h3>
+                                                        <div class="box-tools">
+                                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                        </div>
+                    								</div>
+                    								<div class="box-body">
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
+                                                                <div id="cTypeEmergencies" data-js="cTypeEmergencies" class="chart-diary"></div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
+                                                                <table id="tTypeEmergencies" data-js="tTypeEmergencies" class="cell-border display table table-bordered table-hover" cellspacing="0" width="100%">
+                													<thead>
+                														<tr>
+                															<th>Tipo</th>
+                															<th>Total</th>
+                															<th>%</th>
+                														</tr>
+                													</thead>
+                													<tbody>
+                													</tbody>
+                												</table>
+                                                            </div>
+                                                        </div>
+                    								</div>
+                    							</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="geographyc">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div id="departmentsOverlayContainer" data-js="departmentsOverlayContainer" data-overlay="hide" class="box box-default box-cus">
+                    								<div class="box-header">
+                    									<h3 class="box-title textOverflow-boxTitles"><i class="fa fa-pie-chart" aria-hidden="true"></i><span class="space-subtitle">Departamento</span></h3>
+                                                        <div class="box-tools">
+                                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                        </div>
+                    								</div>
+                    								<div class="box-body">
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                                <div id="cDepartment" data-js="cDepartment" class="chart-diary"></div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                                <table id="tDepartment" data-js="tDepartment" class="cell-border display table table-bordered table-hover" cellspacing="0" width="100%">
+                													<thead>
+                														<tr>
+                															<th>Departamento</th>
+                															<th>Total</th>
+                															<th>%</th>
+                														</tr>
+                													</thead>
+                													<tbody>
+                													</tbody>
+                												</table>
+                                                            </div>
+                                                        </div>
+                    								</div>
+                    							</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div id="provincesOverlayContainer" data-js="provincesOverlayContainer" data-overlay="hide" class="box box-default box-cus">
+                    								<div class="box-header">
+                    									<h3 class="box-title textOverflow-boxTitles"><i class="fa fa-pie-chart" aria-hidden="true"></i><span class="space-subtitle">Provincia</span></h3>
+                                                        <div class="box-tools">
+                                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                        </div>
+                    								</div>
+                    								<div class="box-body">
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                                <div id="cProvince" data-js="cProvince" class="chart-diary"></div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                                <table id="tProvince" data-js="tProvince" class="cell-border display table table-bordered table-hover" cellspacing="0" width="100%">
+                													<thead>
+                														<tr>
+                															<th>Provincia</th>
+                															<th>Total</th>
+                															<th>%</th>
+                														</tr>
+                													</thead>
+                													<tbody>
+                													</tbody>
+                												</table>
+                                                            </div>
+                                                        </div>
+                    								</div>
+                    							</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div id="districtsOverlayContainer" data-js="districtsOverlayContainer" data-overlay="hide" class="box box-default box-cus">
+                    								<div class="box-header">
+                    									<h3 class="box-title textOverflow-boxTitles"><i class="fa fa-pie-chart" aria-hidden="true"></i><span class="space-subtitle">Distrito</span></h3>
+                                                        <div class="box-tools">
+                                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                        </div>
+                    								</div>
+                    								<div class="box-body">
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                                <div id="cDistrict" data-js="cDistrict" class="chart-diary"></div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                                <table id="tDistrict" data-js="tDistrict" class="cell-border display table table-bordered table-hover" cellspacing="0" width="100%">
+                													<thead>
+                														<tr>
+                															<th>Distrito</th>
+                															<th>Total</th>
+                															<th>%</th>
+                														</tr>
+                													</thead>
+                													<tbody>
+                													</tbody>
+                												</table>
+                                                            </div>
+                                                        </div>
+                    								</div>
+                    							</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
             <footer class="main-footer">
-                <div class="pull-right hidden-xs">
-                    <b>Version</b> 1.0.0
+                <div class="container">
+                    <div class="pull-right hidden-xs">
+                        <b>Version</b> 1.0.0
+                    </div>
+                    <strong>
+                        &copy; <span data-js="currentYear">[Current_Year]</span>
+                        <a class="footer-text footer-highlight" href="#">Info Bomberos</a>.
+                    </strong>
                 </div>
-                <strong>&copy; <span data-js="currentYear">[Current_Year]</span> <a class="footer-text" href="#">Info Bomberos</a>.</strong>
             </footer>
         </div>
 		<script src="js/library/requirejs/require.js"></script>
@@ -80,19 +375,120 @@
     </body>
 </html>
 
+<!--Modal Routes Information Detail-->
+<div id="infoRoutesModal" data-js="infoRoutesModal" class="modal fade" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+   <div class="modal-dialog modal-cust">
+     <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title modal-header-title">Detalle de rutas</h4>
+        </div>
+        <div class="modal-body modal-body-cust modal-body-color">
+
+        </div>
+    </div>
+</div>
+
+<!--Filters Select Container Template-->
+<script id="temp-filters-container" type="text/x-handlebars-template">
+    <div class="row filter-bottom-separate">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="pull-orientation filter-element">
+                <label class="controls" for="{{name}}">{{title}}</label>
+            </div>
+        </div>
+        <div id="{{container}}" data-js="{{container}}" class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+            {{{element}}}
+        </div>
+    </div>
+</script>
+
+<!--Filters Select Element Template-->
+<script id="temp-filters-select-element" type="text/x-handlebars-template">
+    <select id="{{name}}" name="{{name}}" data-js="{{name}}" data-validation="{{validation}}" class="form-control select2-multiple" {{{multiple}}}></select>
+</script>
+
+<!--Filters Date Element Template-->
+<script id="temp-filters-date-element" type="text/x-handlebars-template">
+    <input id="{{name}}" name="{{name}}" data-js="{{name}}" data-validation="{{validation}}" readonly="readonly" type="text" class="form-control custom-date-component" placeholder="{{placeholder}}">
+</script>
+
+<!--Filters Action Container Template-->
+<script id="temp-filters-action-container" type="text/x-handlebars-template">
+    <div id="{{container}}" data-js="{{container}}" class="col-xs-12 col-sm-12 col-md-4 col-md-offset-8 col-lg-4 col-lg-offset-8">
+        <div class="row btn-padding-separate pull-right">
+            <button id="{{name}}" data-js="{{name}}" data-status="{{status}}" type="button" class="btn btn-primary">{{title}}</button>
+        </div>
+    </div>
+</script>
+
+<!--Map Marker Info Window Template-->
+<script id="temp-map-marker-info-window" type="text/x-handlebars-template">
+    <div id="map_iw_container" class="map-iw-parent-container">
+        <div class="map-iw-title">{{title}}</div>
+        <div>
+            <div class="map-iw-content-status">{{status}}</div>
+            <div>{{address}}</div>
+        </div>
+    </div>
+</script>
+
+<!--Table Localization Column Template-->
+<script id="temp-table-localization-column" type="text/x-handlebars-template">
+    <button type="button" class="btn btn-xs btn-default component-localization{{disable-style}}"
+        data-js="{{name}}" data-lon="{{longitude}}" data-lat="{{latitude}}" data-animation="{{animation}}">
+        <i class="fa fa-location-arrow" aria-hidden="true"></i>
+    </button>
+</script>
+
+<!--Info Content Type Emergencie Template-->
+<script id="temp-info-content-type-emergencie" type="text/x-handlebars-template">
+    <li data-js="{{root}}" {{{active}}} data-property="{{property}}" data-existence="ok">
+        <div class="info-box {{style}}">
+            <span class="info-box-icon info-box-icon-cust"><img src="{{image}}" /></span>
+            <div class="info-box-content info-box-content-cust info-align-content">
+                <span id="{{nameText}}" data-js="{{nameText}}" class="info-box-text">{{text}}</span>
+                <span id="{{nameNumber}}" data-js="{{nameNumber}}"class="info-box-number">{{number}}</span>
+                <div class="progress">
+                    <div id="{{nameProgressbar}}" data-js="{{nameProgressbar}}"class="progress-bar" style="width: {{percentage}}%"></div>
+                </div>
+                <span id="{{nameDescription}}" data-js="{{nameDescription}}"class="progress-description">{{description}}</span>
+            </div>
+        </div>
+    </li>
+</script>
+
+<!--Overlay Container Template-->
+<script id="temp-overlay-container" type="text/x-handlebars-template">
+    <div class="overlay">
+        <div class="overlay-message">
+            <i class="fa fa-times" aria-hidden="true"></i><span class="space-subtitle">{{message}}</span>
+            <button id="{{action}}" data-js="{{action}}" type="button" class="btn btn-xs btn-primary">{{action-message}}</button>
+        </div>
+    </div>
+</script>
+
+<!--Table Type Emergencie Status Column Template-->
+<script id="temp-table-typeEmergencie-status-column" type="text/x-handlebars-template">
+    <span class="label {{style}}">{{status}}</span>
+</script>
+
+<!--Table Routes Column Template-->
+<script id="temp-table-routes-column" type="text/x-handlebars-template">
+    <button type="button" class="btn btn-xs bg-orange component-localization" data-js="{{name}}">
+        <i class="fa fa-map" aria-hidden="true"></i>
+    </button>
+</script>
+
 <script type="text/javascript">
 
-    //Se guarda en variable ruta basica de WS y parametros iniciales de configuracion de plataforma
+    //Configuracion inicial para modulo
     var config = {};
-    config['root'] = 'mob';
-    config['main'] = 'report';
-    config['subMain'] = 'recharge';
-    config['section'] = 'dashboard';
-    config['urlWS'] = 'http://172.19.74.248:8080/smartflex-ws';
-	config['urlWSLayers'] = 'http://172.16.103.122:81';
+    config.module = "diary";
+    config.urlWs = "http://infobomberos.com/InfoBombWS_v2.0";
 
     //Se inicializa requireJS en hoja js
-    require(['template', 'diary/main'], function(template, app) {
+    require(['template', 'module/view/diary'], function(template, app) {
         app.initialize(config);
     });
 

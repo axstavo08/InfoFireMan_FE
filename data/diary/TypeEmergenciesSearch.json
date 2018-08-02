@@ -1,0 +1,50 @@
+[
+    {
+        "XCount": 67,
+        "XPercent": 54.918,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "idTypeId": 1,
+        "imTypeImage": "https://png.icons8.com/color/24/doctor-female.png",
+        "nbEmergType": "EMERGENCIA MEDICA"
+    },
+    {
+        "XCount": 25,
+        "XPercent": 20.4918,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "idTypeId": 4,
+        "imTypeImage": "https://png.icons8.com/color/24/fire-truck.png",
+        "nbEmergType": "ACCIDENTE VEHICULAR"
+    },
+    {
+        "XCount": 14,
+        "XPercent": 11.4754,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "idTypeId": 2,
+        "imTypeImage": "https://png.icons8.com/color/24/fire-element.png",
+        "nbEmergType": "INCENDIO"
+    },
+    {
+        "XCount": 8,
+        "XPercent": 6.5574,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "idTypeId": 6,
+        "imTypeImage": "https://png.icons8.com/color/24/000000/helping-hand.png",
+        "nbEmergType": "SERVICIO ESPECIAL"
+    },
+    {
+        "XCount": 7,
+        "XPercent": 5.7377,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "idTypeId": 3,
+        "imTypeImage": "https://png.icons8.com/color/24/self-destruct-button.png",
+        "nbEmergType": "MATERIALES PELIGROSOS (INCIDENTE)"
+    },
+    {
+        "XCount": 1,
+        "XPercent": 0.8197,
+        "dtEmergDate": "2018-04-08T00:00:00Z",
+        "idTypeId": 5,
+        "imTypeImage": "https://png.icons8.com/color/24/fireman-male.png",
+        "nbEmergType": "RESCATE"
+    }
+]
