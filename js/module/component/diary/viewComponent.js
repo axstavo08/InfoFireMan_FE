@@ -39,8 +39,8 @@ define([
         } else {
             listRequests[requestProperty.emergencies_information] = diaryAjax.getEmergenciesInformation(filters);
     		listRequests[requestProperty.hours_24_information] = diaryAjax.get24HoursInformation(filters);
-            listRequests[requestProperty.type_emergencies_information] = diaryAjax.getTypeEmergenciesInformation(filters);
-            listRequests[requestProperty.type_status_information] = diaryAjax.getTypeStatusInformation(filters);
+            listRequests[requestProperty.type_emergencies_information] = diaryAjax.getTypeEmergenciesInformation();
+            listRequests[requestProperty.type_status_information] = diaryAjax.getTypeStatusInformation();
             listRequests[requestProperty.departments_information] = diaryAjax.getDepartmentsInformation(filters);
             listRequests[requestProperty.provinces_information] = diaryAjax.getProvincesInformation(filters);
             listRequests[requestProperty.districts_information] = diaryAjax.getDistrictsInformation(filters);

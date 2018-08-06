@@ -83,7 +83,7 @@ define([
     return {
         'initialize': initialize,
         'settings': {
-            'pageLoad': 11
+            'pageLoad': 10
         }
     };
 });

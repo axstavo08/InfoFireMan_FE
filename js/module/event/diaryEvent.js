@@ -90,9 +90,9 @@ define([
 
 	//Eventos de timer
 	function timer(){
-		setInterval(function(){
-			globalView.view.load();
-		}, 120000);
+		/*setInterval(function(){
+			//globalView.view.load();
+		}, 120000);*/
 	}
 
 	//Reanima y acomoda componentes

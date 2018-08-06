@@ -13,12 +13,14 @@ define(['jquery', 'module/util/resourceRequests'], function($, resourceRequests)
     //Obtener tipos de emergencias
     function getTypeEmergency() {
         var REST_TYPE_EMERGENCY_URI = REST_MAIN_FILTER.concat(resourceRequests.filters.type);
+        //REST_TYPE_EMERGENCY_URI = "data/filters/TypeEmergencyFilters.json";
         //console.log(REST_TYPE_EMERGENCY_URI);
         return $.ajax({
             'url': REST_TYPE_EMERGENCY_URI,
             'type': 'GET',
             "crossDomain": true,
             'cache': true,
+            'dataType': "json",
             'async': true,
             'headers': {
                 "Authorization": "Basic " + btoa(resourceRequests.parameters.auth.basic.user.concat(':').concat(resourceRequests.parameters.auth.basic.pass))
@@ -32,12 +34,14 @@ define(['jquery', 'module/util/resourceRequests'], function($, resourceRequests)
     //Obtener estados
     function getStatus() {
         var REST_STATUS_URI = REST_MAIN_FILTER.concat(resourceRequests.filters.status);
+        //REST_STATUS_URI = "data/filters/StatusFilters.json";
         //console.log(REST_STATUS_URI);
         return $.ajax({
             'url': REST_STATUS_URI,
             'type': 'GET',
             "crossDomain": true,
             'cache': true,
+            'dataType': "json",
             'async': true,
             'headers': {
                 "Authorization": "Basic " + btoa(resourceRequests.parameters.auth.basic.user.concat(':').concat(resourceRequests.parameters.auth.basic.pass))
@@ -51,12 +55,14 @@ define(['jquery', 'module/util/resourceRequests'], function($, resourceRequests)
     //Obtener departamentos
     function getDepartments() {
         var REST_DEPARTMENTS_URI = REST_MAIN_FILTER.concat(resourceRequests.filters.departaments);
+        //REST_DEPARTMENTS_URI = "data/filters/DepartmentFilters.json";
         //console.log(REST_DEPARTMENTS_URI);
         return $.ajax({
             'url': REST_DEPARTMENTS_URI,
             'type': 'GET',
             "crossDomain": true,
             'cache': true,
+            'dataType': "json",
             'async': true,
             'headers': {
                 "Authorization": "Basic " + btoa(resourceRequests.parameters.auth.basic.user.concat(':').concat(resourceRequests.parameters.auth.basic.pass))
@@ -68,15 +74,17 @@ define(['jquery', 'module/util/resourceRequests'], function($, resourceRequests)
     }
 
     //Obtener provincias
-    function getProvinces(ids) {
+    function getProvinces(id) {
         var REST_PROVINCES_URI = (REST_MAIN_FILTER.concat(resourceRequests.filters.provinces))
-                                    .replace('{{ids}}', ids);
+                                    .replace('{{id}}', id);
+        //REST_PROVINCES_URI = "data/filters/ProvincesFilters.json";
         //console.log(REST_PROVINCES_URI);
         return $.ajax({
             'url': REST_PROVINCES_URI,
             'type': 'GET',
             "crossDomain": true,
             'cache': true,
+            'dataType': "json",
             'async': true,
             'headers': {
                 "Authorization": "Basic " + btoa(resourceRequests.parameters.auth.basic.user.concat(':').concat(resourceRequests.parameters.auth.basic.pass))

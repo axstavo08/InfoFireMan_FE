@@ -1,14 +1,14 @@
 [
     {
-        "idDepartId": 1,
-        "nbDepartName": "LIMA"
+        "id_DepartamentId": 1,
+        "nb_DepartamentName": "LIMA"
     },
     {
-        "idDepartId": 2,
-        "nbDepartName": "CALLAO"
+        "id_DepartamentId": 2,
+        "nb_DepartamentName": "CALLAO"
     },
     {
-        "idDepartId": 0,
-        "nbDepartName": "OTROS"
+        "id_DepartamentId": 999,
+        "nb_DepartamentName": "NO DEFINIDO"
     }
 ]

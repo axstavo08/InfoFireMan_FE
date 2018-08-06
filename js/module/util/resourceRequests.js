@@ -8,17 +8,16 @@ define({
         'type': '/Stats/Types',
         'status': '/Status',
         'departaments': '/Departaments',
-        'provinces': '/Provinces/{{ids}}'
+        'provinces': '/Provinces/{{id}}'
     },
 	'view': {
-		//'emergencies_information': '/Emergencies/{{today}}/{{type}}/{{status}}/{{dep}}/{{prov}}',
 		'emergencies_information': '/Emergencies/{{type}}/{{status}}/{{dep}}/{{prov}}',
-		'hours_24_information': '/Stats/24hours/{{today}}',
-		'type_emergencies_information': '/Stats/Type/{{today}}',
-		'type_status_information': '/Stats/Status/{{today}}',
-		'departments_information': '/Stats/Department/{{today}}',
-		'provinces_information': '/Stats/Province/{{today}}',
-		'districts_information': '/Stats/District/{{today}}/{{prov}}'
+		'hours_24_information': '/Stats/24hours/{{type}}',
+		'type_emergencies_information': '/Stats/Types',
+		'type_status_information': '/Stats/Status',
+		'departments_information': '/Stats/Departaments/{{dep}}',
+		'provinces_information': '/Stats/Province/{{dep}}',
+		'districts_information': '/Stats/District/{{prov}}'
 	},
 	'property': {
 		'emergencies_information': "emergencies_information",

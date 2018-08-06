@@ -17,11 +17,11 @@ define({
             'CONTAINER': "contTypeStatus", 'VALIDATION': "yes"
         },
 		'DEPARTMENT': {
-            'TITLE': "Departamento", 'COMPONENT': "sDepartment", 'CONTAINER': "contDepartment",
-            'VALIDATION': "no"
+            'TITLE': "Departamento", 'COMPONENT': "sDepartment", 'MULTIPLE': 'multiple="multiple"', 'CONTAINER': "contDepartment",
+            'VALIDATION': "yes"
         },
 		'PROVINCE': {
-            'TITLE': "Provincias", 'COMPONENT': "sProvince", 'MULTIPLE': 'multiple="multiple"', 'CONTAINER': "contProvince",
+            'TITLE': "Provincias", 'COMPONENT': "sProvince", 'CONTAINER': "contProvince",
             'VALIDATION': "no"
         },
         'DATE_TODAY': {
@@ -40,7 +40,7 @@ define({
 			}
 		},
 		'PROVINCE': {
-			'STATUS': true,
+			'STATUS': false,
 			'DATA': {
 				'ID': "id_ProvinceId", 'LABEL': "nb_ProvinceName", 'PARENT': "id_DepartamentId"
 			}
@@ -66,10 +66,10 @@ define({
 			'NAME': "type_status", 'TYPE': "multiple"
 		},
 		'DEPARTMENT': {
-			'NAME': "department", 'TYPE': "single"
+			'NAME': "department", 'TYPE': "multiple"
 		},
 		'PROVINCE': {
-			'NAME': "province", 'TYPE': "multiple"
+			'NAME': "province", 'TYPE': "single"
 		},
 		'DATE_TODAY': {
 			'NAME': "date_today"

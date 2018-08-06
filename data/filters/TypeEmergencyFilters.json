@@ -1,30 +1,32 @@
 [
     {
-        "idTypeId": 1,
-        "nbTypeName": "EMERGENCIA MEDICA"
+        "id_ETypeId": 1,
+        "im_ETypeImage": "https://png.icons8.com/color/24/fire-truck.png",
+        "nb_ETypeName": "ACCIDENTE VEHICULAR"
     },
     {
-        "idTypeId": 2,
-        "nbTypeName": "INCENDIO"
+        "id_ETypeId": 2,
+        "im_ETypeImage": "https://png.icons8.com/color/24/fire-element.png",
+        "nb_ETypeName": "INCENDIO"
     },
     {
-        "idTypeId": 3,
-        "nbTypeName": "MATERIALES PELIGROSOS (INCIDENTE)"
+        "id_ETypeId": 3,
+        "im_ETypeImage": "https://png.icons8.com/color/24/doctor-female.png",
+        "nb_ETypeName": "EMERGENCIA MEDICA"
     },
     {
-        "idTypeId": 4,
-        "nbTypeName": "ACCIDENTE VEHICULAR"
+        "id_ETypeId": 4,
+        "im_ETypeImage": "https://png.icons8.com/color/24/000000/helping-hand.png",
+        "nb_ETypeName": "SERVICIO ESPECIAL"
     },
     {
-        "idTypeId": 5,
-        "nbTypeName": "RESCATE"
+        "id_ETypeId": 5,
+        "im_ETypeImage": "https://png.icons8.com/color/24/self-destruct-button.png",
+        "nb_ETypeName": "MATERIALES PELIGROSOS (INCIDENTE)"
     },
     {
-        "idTypeId": 6,
-        "nbTypeName": "SERVICIO ESPECIAL"
-    },
-    {
-        "idTypeId": 7,
-        "nbTypeName": "DESASTRES NATURALES"
+        "id_ETypeId": 6,
+        "im_ETypeImage": "https://png.icons8.com/color/24/fireman-male.png",
+        "nb_ETypeName": "RESCATE"
     }
 ]

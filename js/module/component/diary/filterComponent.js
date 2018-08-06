@@ -20,12 +20,12 @@ define(['i18n!js/nls/imessages', 'module/util/resourceRequests', 'module/util/re
     function loadData(){
         //Obtiene objetos ajax de peticion y ejecuta
 		$.when(filterAjax.getTypeEmergency(), filterAjax.getStatus(),
-            filterAjax.getDepartments(), filterAjax.getProvinces('1'))//1,2
+            filterAjax.getDepartments()/*, filterAjax.getProvinces('1')*/)
 		.then(doActionsForSuccessfulLoad, doActionsForFailedLoad);
     }
 
     //Acciones para carga satisfactoria
-    function doActionsForSuccessfulLoad(dataTypeEmergency, dataStatus, dataDepartments, dataProvinces){
+    function doActionsForSuccessfulLoad(dataTypeEmergency, dataStatus, dataDepartments/*, dataProvinces*/){
         var filterProcessedData;
         filtersData = {};
         dataDependency = {};
@@ -50,13 +50,16 @@ define(['i18n!js/nls/imessages', 'module/util/resourceRequests', 'module/util/re
             defaultFilters[filtersProperty.DEPARTMENT.NAME] = getInitialValuesOfFilters(filtersData[filtersProperty.DEPARTMENT.NAME]);
             filtersSelected[filtersProperty.DEPARTMENT.NAME] = defaultFilters[filtersProperty.DEPARTMENT.NAME];
         }
-        if(dataProvinces[1] === resourceRequest.status.success) {
+        /*if(dataProvinces[1] === resourceRequest.status.success) {
             filterProcessedData = processFilterData(dataProvinces[0], filtersDependency.PROVINCE,
                                     dataDependency[filtersProperty.DEPARTMENT.NAME]);
             filtersData[filtersProperty.PROVINCE.NAME] = filterProcessedData.items;
             defaultFilters[filtersProperty.PROVINCE.NAME] = resourceFilters.DEFAULT.PROVINCE;
             filtersSelected[filtersProperty.PROVINCE.NAME] = defaultFilters[filtersProperty.PROVINCE.NAME];
-        }
+        }*/
+        filtersData[filtersProperty.PROVINCE.NAME] = [];
+        defaultFilters[filtersProperty.PROVINCE.NAME] = resourceFilters.DEFAULT.PROVINCE;
+        filtersSelected[filtersProperty.PROVINCE.NAME] = defaultFilters[filtersProperty.PROVINCE.NAME];
         buildSelects();
         buildDate();
         createAction();
@@ -68,6 +71,24 @@ define(['i18n!js/nls/imessages', 'module/util/resourceRequests', 'module/util/re
         console.error(jqXHR);
         console.error(textStatus);
         console.error('any filter request has failed');
+    }
+
+    //Peticion para cargar provincias
+    function doActionForProvinces(id){
+        var filterProcessedData;
+        filterAjax.getProvinces(id).done(function(data, textStatus, jqXHR) {
+            if(jqXHR.status === 200){
+                filterProcessedData = processFilterData(data, filtersDependency.PROVINCE);
+                filtersData[filtersProperty.PROVINCE.NAME] = filterProcessedData.items;
+                destroyAndCreateElementSelect2(filtersProperty.PROVINCE.NAME, false,
+                                filtersData[filtersProperty.PROVINCE.NAME], buildTemplateSelectionForMultiSelect2,
+                                filtersElement.DEPARTMENT.CONTAINER);
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            console.error(jqXHR);
+            console.error(textStatus);
+            console.error('province filter request has failed');
+        });
     }
 
     //Inicializa objeto de filtros seleccionados y valores por defecto
@@ -131,9 +152,9 @@ define(['i18n!js/nls/imessages', 'module/util/resourceRequests', 'module/util/re
             //Eventos para filtros de tipos de estados
             initializeEventsForElementMultipleSelect2(filtersProperty.TYPE_STATUS.NAME);
             //Eventos para filtros de departamentos
-            initializeEventsForElementSingleSelect2(filtersProperty.DEPARTMENT.NAME, filtersElement.DEPARTMENT.CONTAINER, filtersProperty.PROVINCE);
+            initializeEventsForElementMultipleSelect2(filtersProperty.DEPARTMENT.NAME, false, filtersElement.DEPARTMENT.CONTAINER, filtersProperty.PROVINCE);
             //Eventos para filtros de provincias
-            initializeEventsForElementMultipleSelect2(filtersProperty.PROVINCE.NAME, true);
+            initializeEventsForElementSingleSelect2(filtersProperty.PROVINCE.NAME, true);
             /*$.dataJS('test').on('click', function(){
                 console.log(getFiltersSelected());
             });*/
@@ -197,7 +218,9 @@ define(['i18n!js/nls/imessages', 'module/util/resourceRequests', 'module/util/re
             var selectId = $(this).val();
 			$(this).valid();
 			if(selectId === null){
-				filtersComponent.select[dependency.NAME].empty();
+                if(typeof dependency !== 'undefined' && dependency !== null){
+                    filtersComponent.select[dependency.NAME].empty();
+                }
                 filtersSelected[name] = defaultFilters[name];
 			}
         });
@@ -215,15 +238,28 @@ define(['i18n!js/nls/imessages', 'module/util/resourceRequests', 'module/util/re
     }
 
     //Inicializa eventos para elemento select2 multiple
-    function initializeEventsForElementMultipleSelect2(name, defaultValidation){
+    function initializeEventsForElementMultipleSelect2(name, defaultValidation, parent, dependency){
         filtersComponent.select[name].on('select2:close', function(e) {
+            var sData;
             console.log("close");
             filtersSelected[name] = getValueOfItemsSelectedForMultiSelect2($(this).val());
             if(filtersSelected[name] === null){
                 if(typeof defaultValidation !== 'undefined' && defaultValidation !== null){
                     if(defaultValidation){
                         filtersSelected[name] = defaultFilters[name];
+                        console.log(filtersSelected[name]);
                     }
+                }
+            }
+            if(typeof dependency !== 'undefined' && dependency !== null){
+                sData = (filtersSelected[name] !== null) ? filtersSelected[name].split(",") : [];
+                if(sData.length === 1){
+                    doActionForProvinces(sData);
+                } else {
+                    destroyAndCreateElementSelect2(dependency.NAME,
+                                    (dependency.TYPE === resourceFilters.TYPE.MULTIPLE) ? true : false,
+                                    [], buildTemplateSelectionForMultiSelect2, parent);
+                    defaultFilters[filtersProperty.PROVINCE.NAME] = resourceFilters.DEFAULT.PROVINCE;
                 }
             }
         });
@@ -247,10 +283,10 @@ define(['i18n!js/nls/imessages', 'module/util/resourceRequests', 'module/util/re
         buildContextForElementSelectForFilter(resourceFilters.ELEMENT.DEPARTMENT, filtersContent,
                 filtersProperty.DEPARTMENT.NAME, filtersElement.DEPARTMENT.COMPONENT,
                 filtersData[filtersProperty.DEPARTMENT.NAME], buildTemplateSelectionForMultiSelect2,
-                false, filtersProperty.DEPARTMENT.TYPE);
+                true, filtersProperty.DEPARTMENT.TYPE);
         buildContextForElementSelectForFilter(resourceFilters.ELEMENT.PROVINCE, filtersContent,
                 filtersProperty.PROVINCE.NAME, filtersElement.PROVINCE.COMPONENT, null,
-                buildTemplateSelectionForMultiSelect2, null, filtersProperty.PROVINCE.TYPE);
+                null, null, filtersProperty.PROVINCE.TYPE);
 		return true;
     }
 
@@ -326,7 +362,7 @@ define(['i18n!js/nls/imessages', 'module/util/resourceRequests', 'module/util/re
 
     //Destruye elemento select2 y crea nuevo
     function destroyAndCreateElementSelect2(name, isMultiple, data, funcTemplateSelection, parent){
-        filtersComponent.select[name].select2('destroy').empty().select2MultiCheckboxes(
+        filtersComponent.select[name].select2('destroy').empty().select2(
             (isMultiple) ? getElementMultipleSelect2Configuration(data, funcTemplateSelection, parent)
                          : getElementSingleSelect2Configuration(data, parent)
         );
@@ -423,6 +459,9 @@ define(['i18n!js/nls/imessages', 'module/util/resourceRequests', 'module/util/re
 					'validSelectMultiple': true
 				},
 				'sStatus': {
+					'validSelectMultiple': true
+				},
+				'sDepartment': {
 					'validSelectMultiple': true
 				}
 			},

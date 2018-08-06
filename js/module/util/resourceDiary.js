@@ -45,11 +45,11 @@ define({
 		},
 		'DATA': {
 			'emergencies': {
-				'latitude': "nuEmergLat", 'longitude': "nuEmergLong", 'type': "nbEmergType",
-				'status': "nbEmergStatus", 'address': "txEmergAddress"
+				'latitude': "nuEmergencyLat", 'longitude': "nuEmergencyLong", 'type': "nbETypeName",
+				'status': "nbEStatusName", 'address': "txEmergencyAddress"
 			},
 			'typeEmergencies': {
-				'quantity': "XCount", 'percentage': "XPercent", 'type': "nbEmergType"
+				'quantity': "nuXCount", 'percentage': "nuXPercent", 'type': "nbETypeName"
 			}
 		}
 	},
@@ -233,11 +233,11 @@ define({
 			'options': {
 				'columns': [
 					{'className': "column-custom", 'width': "5%", 'orderable': false},
-	                {'data': "dtEmergDateTime", 'className': "column-custom", 'width': "15%"},
-	                {'data': "txEmergAddress", 'className': "column-custom", 'width': "40%"},
-	                {'data': "nbEmergType", 'className': "column-custom", 'width': "15%"},
-					{'data': "nbEmergStatus", 'className': "column-custom", 'width': "10%"},
-	                {'data': "nuEmergPart", 'className': "column-custom", 'width': "10%"},
+	                {'data': "dtEmergencyDateTime", 'className': "column-custom", 'width': "15%"},
+	                {'data': "txEmergencyAddress", 'className': "column-custom", 'width': "40%"},
+	                {'data': "nbETypeName", 'className': "column-custom", 'width': "15%"},
+					{'data': "nbEStatusName", 'className': "column-custom", 'width': "10%"},
+	                {'data': "nbEmergencyMachine", 'className': "column-custom", 'width': "10%"},
 					{'className': "column-custom", 'width': "5%", 'orderable': false}
 	            ],
 				'searching': true, 'ordering': true, 'paging': true, 'lengthChange': false, 'info': true,
@@ -257,9 +257,9 @@ define({
 			'id': 'tTypeEmergencies',
 			'options': {
 				'columns': [
-					{'data': "nbEmergType", 'className': "column-custom", 'width': "50%"},
-					{'data': "XCount", 'className': "column-custom", 'width': "25%"},
-					{'data': "XPercent", 'className': "column-custom", 'width': "25%"}
+					{'data': "nbETypeName", 'className': "column-custom", 'width': "50%"},
+					{'data': "nuXCount", 'className': "column-custom", 'width': "25%"},
+					{'data': "nuXPercent", 'className': "column-custom", 'width': "25%"}
 				],
 				'searching': false, 'ordering': false, 'paging': false, 'lengthChange': false, 'info': false,
 				'autoWidth': true, 'pageLength': null, 'scrollX': true, 'scrollY': '50vh', 'scrollCollapse': true,
@@ -275,9 +275,9 @@ define({
 			'id': 'tTypeStatus',
 			'options': {
 				'columns': [
-					{'data': "nbEmergStatus", 'className': "column-custom", 'width': "50%"},
-					{'data': "XCount", 'className': "column-custom", 'width': "25%"},
-					{'data': "XPercent", 'className': "column-custom", 'width': "25%"}
+					{'data': "nbEStatusName", 'className': "column-custom", 'width': "50%"},
+					{'data': "nuXCount", 'className': "column-custom", 'width': "25%"},
+					{'data': "nuXPercent", 'className': "column-custom", 'width': "25%"}
 				],
 				'searching': false, 'ordering': false, 'paging': false, 'lengthChange': false, 'info': false,
 				'autoWidth': true, 'pageLength': null, 'scrollX': true, 'scrollY': '50vh', 'scrollCollapse': true,
@@ -293,9 +293,9 @@ define({
 			'id': 'tDepartment',
 			'options': {
 				'columns': [
-					{'data': "nbDepartName", 'className': "column-custom", 'width': "50%"},
-					{'data': "XCount", 'className': "column-custom", 'width': "25%"},
-					{'data': "XPercent", 'className': "column-custom", 'width': "25%"}
+					{'data': "nbDepartamentName", 'className': "column-custom", 'width': "50%"},
+					{'data': "nuXCount", 'className': "column-custom", 'width': "25%"},
+					{'data': "nuXPercent", 'className': "column-custom", 'width': "25%"}
 				],
 				'searching': false, 'ordering': false, 'paging': false, 'lengthChange': false, 'info': false,
 				'autoWidth': true, 'pageLength': null, 'scrollX': true, 'scrollY': '50vh', 'scrollCollapse': true,
@@ -367,8 +367,8 @@ define({
 				'title': null, 'subtitle': null
 			},
 			'property': {
-				'quantity': "XCount", 'formatHour24': "hrHour", 'formatHour12': "hrHourAM",
-				'emergency': "nbEmergType"
+				'quantity': "nuXTotal", 'formatHour24': "hrTimeHour24H", 'formatHour12': "hrTimeHourAM",
+				'emergency': "nbETypeName"
 			}
 		},
 		'typeEmergencies': {
@@ -392,7 +392,7 @@ define({
 				'title': null, 'subtitle': null
 			},
 			'property': {
-				'quantity': "XCount", 'percentage': "XPercent", 'emergency': "nbEmergType"
+				'quantity': "nuXCount", 'percentage': "nuXPercent", 'emergency': "nbETypeName"
 			}
 		},
 		'typeStatus': {
@@ -416,7 +416,7 @@ define({
 				'title': null, 'subtitle': null
 			},
 			'property': {
-				'quantity': "XCount", 'percentage': "XPercent", 'status': "nbEmergStatus"
+				'quantity': "nuXCount", 'percentage': "nuXPercent", 'status': "nbEStatusName"
 			}
 		},
 		'departments': {
@@ -440,7 +440,7 @@ define({
 				'title': null, 'subtitle': null
 			},
 			'property': {
-				'quantity': "XCount", 'percentage': "XPercent", 'department': "nbDepartName"
+				'quantity': "nuXCount", 'percentage': "nuXPercent", 'department': "nbDepartamentName"
 			}
 		},
 		'provinces': {

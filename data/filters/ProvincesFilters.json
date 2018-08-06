@@ -1,57 +1,27 @@
 [
     {
-        "idDepartId": 1,
-        "idProvId": 1,
-        "nbProvName": "LIMA"
+        "id_DepartamentId": 1,
+        "id_ProvinceId": 1,
+        "nb_ProvinceName": "LIMA"
     },
     {
-        "idDepartId": 1,
-        "idProvId": 2,
-        "nbProvName": "YAUYOS"
+        "id_DepartamentId": 1,
+        "id_ProvinceId": 2,
+        "nb_ProvinceName": "YAUYOS"
     },
     {
-        "idDepartId": 1,
-        "idProvId": 3,
-        "nbProvName": "HUAURA"
+        "id_DepartamentId": 1,
+        "id_ProvinceId": 3,
+        "nb_ProvinceName": "HUAURA"
     },
     {
-        "idDepartId": 1,
-        "idProvId": 4,
-        "nbProvName": "OYON"
+        "id_DepartamentId": 1,
+        "id_ProvinceId": 8,
+        "nb_ProvinceName": "HUARAL"
     },
     {
-        "idDepartId": 1,
-        "idProvId": 5,
-        "nbProvName": "HUAROCHIRI"
-    },
-    {
-        "idDepartId": 1,
-        "idProvId": 6,
-        "nbProvName": "CANTA"
-    },
-    {
-        "idDepartId": 1,
-        "idProvId": 7,
-        "nbProvName": "CAÑETE"
-    },
-    {
-        "idDepartId": 1,
-        "idProvId": 8,
-        "nbProvName": "HUARAL"
-    },
-    {
-        "idDepartId": 1,
-        "idProvId": 9,
-        "nbProvName": "BARRANCA"
-    },
-    {
-        "idDepartId": 1,
-        "idProvId": 10,
-        "nbProvName": "CAJATAMBO"
-    },
-    {
-        "idDepartId": 2,
-        "idProvId": 11,
-        "nbProvName": "CALLAO"
+        "id_DepartamentId": 1,
+        "id_ProvinceId": 9,
+        "nb_ProvinceName": "BARRANCA"
     }
 ]
