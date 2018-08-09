@@ -1,10 +1,5 @@
 [
     {
-        "id_EStatusId": 1,
-        "im_EStatusImage": "",
-        "nb_EStatusName": "ATENDIENDO"
-    },
-    {
         "id_EStatusId": 2,
         "im_EStatusImage": "",
         "nb_EStatusName": "CERRADO"

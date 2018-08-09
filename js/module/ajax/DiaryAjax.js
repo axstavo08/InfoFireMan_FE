@@ -126,10 +126,11 @@ define([
     //Obtener informacion de provincias
     function getProvincesInformation(filters) {
         var REST_PROVINCES_INFORMATION_URI = (REST_MAIN_VIEW.concat(resourceRequests.view.provinces_information)), idDep;
+        //console.log(filters[filtersProperty.PROVINCE.NAME]);
         idDep = (filters[filtersProperty.PROVINCE.NAME] === "0") ? "1" : filters[filtersProperty.PROVINCE.NAME];
         REST_PROVINCES_INFORMATION_URI = REST_PROVINCES_INFORMATION_URI.replace('{{dep}}', idDep);
-        console.log(REST_PROVINCES_INFORMATION_URI);
-        REST_PROVINCES_INFORMATION_URI = "data/diary/ProvincesSearch.json";
+        //console.log(REST_PROVINCES_INFORMATION_URI);
+        //REST_PROVINCES_INFORMATION_URI = "data/diary/ProvincesSearch.json";
         //console.log(REST_PROVINCES_INFORMATION_URI);
         return $.ajax({
             'url': REST_PROVINCES_INFORMATION_URI,
@@ -152,9 +153,9 @@ define([
         var REST_DISTRICTS_INFORMATION_URI = (REST_MAIN_VIEW.concat(resourceRequests.view.districts_information)), idProv;
         idProv = (filters[filtersProperty.PROVINCE.NAME] === "0") ? "1" : filters[filtersProperty.PROVINCE.NAME];
         REST_DISTRICTS_INFORMATION_URI = REST_DISTRICTS_INFORMATION_URI.replace('{{prov}}', idProv);
-        //console.log(REST_DISTRICTS_INFORMATION_URI);
-        REST_DISTRICTS_INFORMATION_URI = "data/diary/DistrictsSearch.json";
         console.log(REST_DISTRICTS_INFORMATION_URI);
+        //REST_DISTRICTS_INFORMATION_URI = "data/diary/DistrictsSearch.json";
+        //console.log(REST_DISTRICTS_INFORMATION_URI);
         return $.ajax({
             'url': REST_DISTRICTS_INFORMATION_URI,
             'type': 'GET',

@@ -15,18 +15,8 @@
         "nb_ETypeName": "EMERGENCIA MEDICA"
     },
     {
-        "id_ETypeId": 4,
-        "im_ETypeImage": "https://png.icons8.com/color/24/000000/helping-hand.png",
-        "nb_ETypeName": "SERVICIO ESPECIAL"
-    },
-    {
         "id_ETypeId": 5,
         "im_ETypeImage": "https://png.icons8.com/color/24/self-destruct-button.png",
         "nb_ETypeName": "MATERIALES PELIGROSOS (INCIDENTE)"
-    },
-    {
-        "id_ETypeId": 6,
-        "im_ETypeImage": "https://png.icons8.com/color/24/fireman-male.png",
-        "nb_ETypeName": "RESCATE"
     }
 ]

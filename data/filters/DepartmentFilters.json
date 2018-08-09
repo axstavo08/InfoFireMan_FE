@@ -6,9 +6,5 @@
     {
         "id_DepartamentId": 2,
         "nb_DepartamentName": "CALLAO"
-    },
-    {
-        "id_DepartamentId": 999,
-        "nb_DepartamentName": "NO DEFINIDO"
     }
 ]

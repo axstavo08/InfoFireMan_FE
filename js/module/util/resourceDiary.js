@@ -295,7 +295,8 @@ define({
 				'columns': [
 					{'data': "nbDepartamentName", 'className': "column-custom", 'width': "50%"},
 					{'data': "nuXCount", 'className': "column-custom", 'width': "25%"},
-					{'data': "nuXPercent", 'className': "column-custom", 'width': "25%"}
+					{'data': "nuXPercent", 'className': "column-custom", 'width': "25%"},
+					{'className': "column-custom", 'width': "5%", 'orderable': false}
 				],
 				'searching': false, 'ordering': false, 'paging': false, 'lengthChange': false, 'info': false,
 				'autoWidth': true, 'pageLength': null, 'scrollX': true, 'scrollY': '50vh', 'scrollCollapse': true,
@@ -305,15 +306,21 @@ define({
 						return data.toFixed(2);
 					}
 				}]
+			},
+			'util': {
+				'columnDefs': {
+					'search': 3
+				}
 			}
 		},
 		'provinces': {
 			'id': 'tProvince',
 			'options': {
 				'columns': [
-					{'data': "nbProvName", 'className': "column-custom", 'width': "50%"},
-					{'data': "XCount", 'className': "column-custom", 'width': "25%"},
-					{'data': "XPercent", 'className': "column-custom", 'width': "25%"}
+					{'data': "nbProvinceName", 'className': "column-custom", 'width': "50%"},
+					{'data': "nuXCount", 'className': "column-custom", 'width': "25%"},
+					{'data': "nuXPercent", 'className': "column-custom", 'width': "25%"},
+					{'className': "column-custom", 'width': "5%", 'orderable': false}
 				],
 				'searching': false, 'ordering': false, 'paging': false, 'lengthChange': false, 'info': false,
 				'autoWidth': true, 'pageLength': null, 'scrollX': true, 'scrollY': '50vh', 'scrollCollapse': true,
@@ -323,15 +330,20 @@ define({
 						return data.toFixed(2);
 					}
 				}]
+			},
+			'util': {
+				'columnDefs': {
+					'search': 3
+				}
 			}
 		},
 		'districts': {
 			'id': 'tDistrict',
 			'options': {
 				'columns': [
-					{'data': "nbDistName", 'className': "column-custom", 'width': "50%"},
-					{'data': "XCount", 'className': "column-custom", 'width': "25%"},
-					{'data': "XPercent", 'className': "column-custom", 'width': "25%"}
+					{'data': "nbDistrictName", 'className': "column-custom", 'width': "45%"},
+					{'data': "nuXCount", 'className': "column-custom", 'width': "25%"},
+					{'data': "nuXPercent", 'className': "column-custom", 'width': "25%"}
 				],
 				'searching': false, 'ordering': false, 'paging': false, 'lengthChange': false, 'info': false,
 				'autoWidth': true, 'pageLength': null, 'scrollX': true, 'scrollY': '50vh', 'scrollCollapse': true,
@@ -464,7 +476,7 @@ define({
 				'title': null, 'subtitle': null
 			},
 			'property': {
-				'quantity': "XCount", 'percentage': "XPercent", 'province': "nbProvName"
+				'quantity': "nuXCount", 'percentage': "nuXPercent", 'province': "nbProvinceName"
 			}
 		},
 		'districts': {
@@ -488,8 +500,8 @@ define({
 				'title': null, 'subtitle': null
 			},
 			'property': {
-				'quantity': "XCount", 'percentage': "XPercent", 'province': "nbProvName",
-				'district': "nbDistName"
+				'quantity': "nuXCount", 'percentage': "nuXPercent", 'province': "nbDistrictName",
+				'district': "nbDistrictName"
 			}
 		},
 		'util': {

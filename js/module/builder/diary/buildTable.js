@@ -147,6 +147,16 @@ define([
 			$.extend(tOptions, config.options);
 			tOptions.oLanguage = globalDatatable.language();
 			tOptions.data = data;
+			tOptions.columnDefs = [
+				{
+					'targets': config.util.columnDefs.search,
+					'render': function(data, type, row, meta) {
+						var structure = routesStructure, configRoutes = componentResource.routes,
+							name = configRoutes.property.name;
+						return structure.replace(configRoutes.template.name, name);
+					}
+				}
+			];
 			listTables[componentProperty.departments] = new DataTable($table, tOptions);
 			listTables[componentProperty.departments].createAnGet();
 			$.extend(globalView.view.components.tables, listTables);

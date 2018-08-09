@@ -3,25 +3,5 @@
         "id_DepartamentId": 1,
         "id_ProvinceId": 1,
         "nb_ProvinceName": "LIMA"
-    },
-    {
-        "id_DepartamentId": 1,
-        "id_ProvinceId": 2,
-        "nb_ProvinceName": "YAUYOS"
-    },
-    {
-        "id_DepartamentId": 1,
-        "id_ProvinceId": 3,
-        "nb_ProvinceName": "HUAURA"
-    },
-    {
-        "id_DepartamentId": 1,
-        "id_ProvinceId": 8,
-        "nb_ProvinceName": "HUARAL"
-    },
-    {
-        "id_DepartamentId": 1,
-        "id_ProvinceId": 9,
-        "nb_ProvinceName": "BARRANCA"
     }
 ]

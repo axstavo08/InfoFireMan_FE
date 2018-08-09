@@ -1,47 +1,50 @@
 [
     {
-        "XCount": 1,
-        "XPercent": 20,
-        "dtEmergDate": "2018-04-08T00:00:00Z",
-        "idDistId": 38,
-        "idProvId": 1,
-        "nbDistName": "SANTA MARIA DEL MAR",
-        "nbProvName": "LIMA"
+        "idDistrictId": 12,
+        "idProvinceId": 1,
+        "nbDistrictName": "INDEPENDENCIA",
+        "nuXCount": 1,
+        "nuXPercent": 12.5,
+        "nuXTotal": 8
     },
     {
-        "XCount": 1,
-        "XPercent": 20,
-        "dtEmergDate": "2018-04-08T00:00:00Z",
-        "idDistId": 37,
-        "idProvId": 1,
-        "nbDistName": "SANTA ANITA",
-        "nbProvName": "LIMA"
+        "idDistrictId": 13,
+        "idProvinceId": 1,
+        "nbDistrictName": "JESUS MARIA",
+        "nuXCount": 1,
+        "nuXPercent": 12.5,
+        "nuXTotal": 8
     },
     {
-        "XCount": 1,
-        "XPercent": 20,
-        "dtEmergDate": "2018-04-08T00:00:00Z",
-        "idDistId": 25,
-        "idProvId": 1,
-        "nbDistName": "PUENTE PIEDRA",
-        "nbProvName": "LIMA"
+        "idDistrictId": 22,
+        "idProvinceId": 1,
+        "nbDistrictName": "MIRAFLORES",
+        "nuXCount": 1,
+        "nuXPercent": 12.5,
+        "nuXTotal": 8
     },
     {
-        "XCount": 1,
-        "XPercent": 20,
-        "dtEmergDate": "2018-04-08T00:00:00Z",
-        "idDistId": 18,
-        "idProvId": 1,
-        "nbDistName": "LURIGANCHO",
-        "nbProvName": "LIMA"
+        "idDistrictId": 25,
+        "idProvinceId": 1,
+        "nbDistrictName": "PUENTE PIEDRA",
+        "nuXCount": 1,
+        "nuXPercent": 12.5,
+        "nuXTotal": 8
     },
     {
-        "XCount": 1,
-        "XPercent": 20,
-        "dtEmergDate": "2018-04-08T00:00:00Z",
-        "idDistId": 1,
-        "idProvId": 1,
-        "nbDistName": "LIMA",
-        "nbProvName": "LIMA"
+        "idDistrictId": 32,
+        "idProvinceId": 1,
+        "nbDistrictName": "SAN JUAN DE LURIGANCHO",
+        "nuXCount": 1,
+        "nuXPercent": 12.5,
+        "nuXTotal": 8
+    },
+    {
+        "idDistrictId": 40,
+        "idProvinceId": 1,
+        "nbDistrictName": "SANTIAGO DE SURCO",
+        "nuXCount": 2,
+        "nuXPercent": 25,
+        "nuXTotal": 8
     }
 ]

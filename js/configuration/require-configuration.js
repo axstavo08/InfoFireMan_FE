@@ -56,7 +56,7 @@ requirejs.config({
         'datatables.net': 'js/library/datatables-1.10.16/js/jquery.dataTables.min',
 		'dataTables.bootstrap': 'js/library/datatables-1.10.16/js/dataTables.bootstrap.min',
         'datatables-ellipsis': 'js/library/datatables-1.10.16/plugins/dataRender/ellipsis',
-        'gmaps': 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBfWgDWUwRootiF6XZUDXpqMaU1Na13hds',
+        'gmaps': 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB6R-S8OVhszlIPhj4t0QRUBU5XZUIikQ4',
         'highcharts-common': 'js/library/highcharts/highcharts',
         'highcharts-no-data-to-display': 'js/library/highcharts/modules/no-data-to-display',
         'sly-scroll': 'js/library/sly-scroll/dist/sly.min',

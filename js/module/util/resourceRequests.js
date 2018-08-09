@@ -16,8 +16,8 @@ define({
 		'type_emergencies_information': '/Stats/Types',
 		'type_status_information': '/Stats/Status',
 		'departments_information': '/Stats/Departaments/{{dep}}',
-		'provinces_information': '/Stats/Province/{{dep}}',
-		'districts_information': '/Stats/District/{{prov}}'
+		'provinces_information': '/Stats/Provinces/{{dep}}',
+		'districts_information': '/Stats/Districts/{{prov}}'
 	},
 	'property': {
 		'emergencies_information': "emergencies_information",
