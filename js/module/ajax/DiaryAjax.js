@@ -153,11 +153,33 @@ define([
         var REST_DISTRICTS_INFORMATION_URI = (REST_MAIN_VIEW.concat(resourceRequests.view.districts_information)), idProv;
         idProv = (filters[filtersProperty.PROVINCE.NAME] === "0") ? "1" : filters[filtersProperty.PROVINCE.NAME];
         REST_DISTRICTS_INFORMATION_URI = REST_DISTRICTS_INFORMATION_URI.replace('{{prov}}', idProv);
-        console.log(REST_DISTRICTS_INFORMATION_URI);
+        //console.log(REST_DISTRICTS_INFORMATION_URI);
         //REST_DISTRICTS_INFORMATION_URI = "data/diary/DistrictsSearch.json";
         //console.log(REST_DISTRICTS_INFORMATION_URI);
         return $.ajax({
             'url': REST_DISTRICTS_INFORMATION_URI,
+            'type': 'GET',
+            "crossDomain": true,
+            'cache': true,
+            'dataType': "json",
+            'async': true,
+            'headers': {
+                "Authorization": "Basic " + btoa(resourceRequests.parameters.auth.basic.user.concat(':').concat(resourceRequests.parameters.auth.basic.pass))
+            },
+            'beforeSend': function (xhr) {
+                xhr.withCredentials = true;
+            }
+        });
+    }
+
+    //Obtener informacion de centros de ayuda
+    function getCentersHelpInformation(id) {
+        var REST_CENTERS_HELP_INFORMATION_URI = (REST_MAIN_VIEW.concat(resourceRequests.view.centers_help_information))
+                                                .replace('{{emergencie}}', id);
+        //REST_CENTERS_HELP_INFORMATION_URI = "data/diary/CentersHelpEmergency.json";
+        //console.log(REST_CENTERS_HELP_INFORMATION_URI);
+        return $.ajax({
+            'url': REST_CENTERS_HELP_INFORMATION_URI,
             'type': 'GET',
             "crossDomain": true,
             'cache': true,
@@ -185,6 +207,7 @@ define([
         'getTypeStatusInformation': getTypeStatusInformation,
         'getDepartmentsInformation': getDepartmentsInformation,
         'getProvincesInformation': getProvincesInformation,
-        'getDistrictsInformation': getDistrictsInformation
+        'getDistrictsInformation': getDistrictsInformation,
+        'getCentersHelpInformation': getCentersHelpInformation
     };
 });

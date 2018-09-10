@@ -15,7 +15,8 @@ define({
 		'table_localization_column': "temp-table-localization-column",
 		'info_content_type_emergencie': "temp-info-content-type-emergencie",
 		'tables_status_column': "temp-table-typeEmergencie-status-column",
-		'table_routes_column': "temp-table-routes-column",
+		'table_routes_column': "temp-table-routes-column", 'table_search_column': "temp-table-search-column",
+		'load_overlay_container': "temp-overlay-load-container",
     },
 	'BODY': "main_body", 'BLOCK_CONTENT': "blockContainer",
 	'MODAL': {
@@ -26,7 +27,8 @@ define({
 		'typeStatus': "typeStatus", 'departments': "departments", 'provinces': "provinces",
 		'districts': "districts", 'lastEmergencie': "lastEmergencie", 'medical_emergencie': "medical_emergencie",
 		'fire': "fire", 'incident': "incident", 'vehicular_accident': "vehicular_accident",
-		'rescue': "rescue", 'special_service': "special_service", 'natural_disasters': "natural_disasters"
+		'rescue': "rescue", 'special_service': "special_service", 'natural_disasters': "natural_disasters",
+		'centersHelp': "centersHelp"
 	},
 	'ATTRIBUTE': {
 		'STATUS': {
@@ -46,10 +48,16 @@ define({
 		'DATA': {
 			'emergencies': {
 				'latitude': "nuEmergencyLat", 'longitude': "nuEmergencyLong", 'type': "nbETypeName",
-				'status': "nbEStatusName", 'address': "txEmergencyAddress"
+				'status': "nbEStatusName", 'address': "txEmergencyAddress", 'id': "idEmergencyId",
+				'date_time': "dtEmergencyDateTime"
 			},
 			'typeEmergencies': {
 				'quantity': "nuXCount", 'percentage': "nuXPercent", 'type': "nbETypeName"
+			},
+			'centersHelp': {
+				'latitude': "nuCHelpLat", 'longitude': "nuCHelpLong", 'distance': "txCHelpDetDistance",
+				'duration': "txCHelpDetDuration", 'address': "txCHelpAddress", 'name': "nbTHelpName",
+				'center': "nbCHelpName"
 			}
 		}
 	},
@@ -61,7 +69,7 @@ define({
 			},
 			'property': {
 				'name': "btnMapLocalizationMarker", 'unknown': "unknown", 'default_style': " disabled",
-				'nameUnique': "btnMapLocalizationMarkerUnique"
+				'nameUnique': "btnMapLocalizationMarkerUnique", 'name_CH': "btnMapLocalizationCHMarker"
 			},
 			'status': {
 				'active': "btn-primary", 'inactive': "btn-default", 'inactive_extra': "component-localization"
@@ -80,10 +88,22 @@ define({
 		},
 		'routes': {
 			'template': {
-				'name': "{{name}}"
+				'name': "{{name}}", 'disable_style': "{{disable_style}}", 'longitude': "{{longitude}}",
+				'latitude': "{{latitude}}", 'emergencie': "{{emergencie}}"
 			},
 			'property': {
-				'name': "btnMapRoutesMarker"
+				'name': "btnMapRoutesMarker", 'unknown': "unknown", 'default_style': " disabled"
+			}
+		},
+		'search': {
+			'template': {
+				'name': "{{name}}", 'id': "{{id}}", 'type': "{{type}}",  'identity': "{{identity}}"
+			},
+			'property': {
+				'name': "btnSearchGeo", 'id': "#btnSearchGeo", 'group': '#btnSearchGeo[data-type="{{type}}"]'
+			},
+			'type': {
+				'department': "department", 'province': "province"
 			}
 		}
 	},
@@ -136,6 +156,14 @@ define({
 		'districts': {
 			'container': {
 				'name': "districtsOverlayContainer", 'action': "districtsOverlayAction"
+			}
+		},
+		'centersHelp': {
+			'containerMap': {
+				'name': "mapCentersHelpOverlayContainer", 'action': "mapCentersHelpOverlayAction"
+			},
+			'containerTable': {
+				'name': "tableCentersHelpOverlayContainer", 'action': "tableCentersHelpOverlayAction"
 			}
 		},
 		'util': {
@@ -192,10 +220,10 @@ define({
 			}
 		},
 		'lastEmergencie': {
-			'parent': "contLastEmergencie", 'type': "typeLastEmergencie",
+			'parent': "contLastEmergencie", 'type': "typeLastEmergencie", 'date_time': "datetimeLastEmergencie",
 			'address': "addressLastEmergencie", 'container': "contContentAddress",
 			'default': {
-				'type': "Desconocido", 'address': "Desconocido"
+				'type': "Desconocido", 'address': "Desconocido", 'date_time': "Desconocido"
 			}
 		}
 	},
@@ -241,7 +269,7 @@ define({
 					{'className': "column-custom", 'width': "5%", 'orderable': false}
 	            ],
 				'searching': true, 'ordering': true, 'paging': true, 'lengthChange': false, 'info': true,
-				'autoWidth': true, 'pageLength': 10, 'scrollX': true, 'order': [4, 'asc']
+				'autoWidth': true, 'pageLength': 10, 'scrollX': true, 'order': [1, 'desc']
 			},
 			'util': {
 				'searching': "tEmergenciesSearch",
@@ -261,8 +289,9 @@ define({
 					{'data': "nuXCount", 'className': "column-custom", 'width': "25%"},
 					{'data': "nuXPercent", 'className': "column-custom", 'width': "25%"}
 				],
-				'searching': false, 'ordering': false, 'paging': false, 'lengthChange': false, 'info': false,
+				'searching': false, 'ordering': true, 'paging': false, 'lengthChange': false, 'info': false,
 				'autoWidth': true, 'pageLength': null, 'scrollX': true, 'scrollY': '50vh', 'scrollCollapse': true,
+				'order': [1, 'desc'],
 				'columnDefs': [{
 					'targets': 2,
 					'render': function(data, type, row, meta) {
@@ -279,8 +308,9 @@ define({
 					{'data': "nuXCount", 'className': "column-custom", 'width': "25%"},
 					{'data': "nuXPercent", 'className': "column-custom", 'width': "25%"}
 				],
-				'searching': false, 'ordering': false, 'paging': false, 'lengthChange': false, 'info': false,
+				'searching': false, 'ordering': true, 'paging': false, 'lengthChange': false, 'info': false,
 				'autoWidth': true, 'pageLength': null, 'scrollX': true, 'scrollY': '50vh', 'scrollCollapse': true,
+				'order': [1, 'desc'],
 				'columnDefs': [{
 					'targets': 2,
 					'render': function(data, type, row, meta) {
@@ -298,8 +328,9 @@ define({
 					{'data': "nuXPercent", 'className': "column-custom", 'width': "25%"},
 					{'className': "column-custom", 'width': "5%", 'orderable': false}
 				],
-				'searching': false, 'ordering': false, 'paging': false, 'lengthChange': false, 'info': false,
-				'autoWidth': true, 'pageLength': null, 'scrollX': true, 'scrollY': '50vh', 'scrollCollapse': true,
+				'searching': false, 'ordering': true, 'paging': true, 'lengthChange': false, 'info': false,
+				'autoWidth': true, 'pageLength': 8, 'scrollX': true, 'scrollY': '50vh', 'scrollCollapse': true,
+				'order': [1, 'desc'],
 				'columnDefs': [{
 					'targets': 2,
 					'render': function(data, type, row, meta) {
@@ -310,6 +341,9 @@ define({
 			'util': {
 				'columnDefs': {
 					'search': 3
+				},
+				'property': {
+					'id': "idDepartamentId"
 				}
 			}
 		},
@@ -322,8 +356,9 @@ define({
 					{'data': "nuXPercent", 'className': "column-custom", 'width': "25%"},
 					{'className': "column-custom", 'width': "5%", 'orderable': false}
 				],
-				'searching': false, 'ordering': false, 'paging': false, 'lengthChange': false, 'info': false,
-				'autoWidth': true, 'pageLength': null, 'scrollX': true, 'scrollY': '50vh', 'scrollCollapse': true,
+				'searching': false, 'ordering': true, 'paging': true, 'lengthChange': false, 'info': false,
+				'autoWidth': true, 'pageLength': 8, 'scrollX': true, 'scrollY': '50vh', 'scrollCollapse': true,
+				'order': [1, 'desc'],
 				'columnDefs': [{
 					'targets': 2,
 					'render': function(data, type, row, meta) {
@@ -334,6 +369,9 @@ define({
 			'util': {
 				'columnDefs': {
 					'search': 3
+				},
+				'property': {
+					'id': "idProvinceId"
 				}
 			}
 		},
@@ -345,8 +383,9 @@ define({
 					{'data': "nuXCount", 'className': "column-custom", 'width': "25%"},
 					{'data': "nuXPercent", 'className': "column-custom", 'width': "25%"}
 				],
-				'searching': false, 'ordering': false, 'paging': false, 'lengthChange': false, 'info': false,
-				'autoWidth': true, 'pageLength': null, 'scrollX': true, 'scrollY': '50vh', 'scrollCollapse': true,
+				'searching': false, 'ordering': true, 'paging': true, 'lengthChange': false, 'info': false,
+				'autoWidth': true, 'pageLength': 8, 'scrollX': true, 'scrollY': '50vh', 'scrollCollapse': true,
+				'order': [1, 'desc'],
 				'columnDefs': [{
 					'targets': 2,
 					'render': function(data, type, row, meta) {
@@ -354,11 +393,37 @@ define({
 					}
 				}]
 			}
+		},
+		'centersHelp': {
+			'id': 'tCentersHelp',
+			'options': {
+				'columns': [
+					{'className': "column-custom", 'width': "5%", 'orderable': false},
+	                {'data': "nbCHelpName", 'className': "column-custom", 'width': "25%"},
+	                {'data': "nbTHelpName", 'className': "column-custom", 'width': "15%"},
+	                {'data': "txCHelpAddress", 'className': "column-custom", 'width': "35%"},
+					{'data': "txCHelpDetDistance", 'className': "column-custom", 'width': "10%"},
+	                {'data': "txCHelpDetDuration", 'className': "column-custom", 'width': "10%"}
+	            ],
+				'searching': true, 'ordering': true, 'paging': true, 'lengthChange': false, 'info': true,
+				'autoWidth': true, 'pageLength': 8, 'scrollX': true, 'order': [[5, 'asc'],[4, 'asc']]
+			},
+			'util': {
+				'columnDefs': {
+					'localization': 0, 'align': [1,2,3]
+				},
+				'style': {
+					'text_left': "align-left-mandatory"
+				}
+			}
 		}
 	},
 	'MAP': {
 		'emergencies': {
 			'id': 'mEmergencies', 'helper': 'mapHelperContainer'
+		},
+		'centersHelp': {
+			'id': 'mCentersHelp', 'helper': 'mapCentersHelpHelperContainer'
 		}
 	},
 	'CHART': {

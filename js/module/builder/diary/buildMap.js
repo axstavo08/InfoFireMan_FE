@@ -9,7 +9,8 @@ define([
 ], function(resourceDiary, gImages, objUtil, GoogleMap, Handlebars) {
 
     var globalView, listMaps = {}, mapResource = resourceDiary.MAP,
-		componentProperty = resourceDiary.PROPERTY, componentAttribute = resourceDiary.ATTRIBUTE;
+		componentProperty = resourceDiary.PROPERTY, componentAttribute = resourceDiary.ATTRIBUTE,
+		requestsForCentersHelp = {'done': null, 'total': null};
 
 	/*Construye mapa de emergencias*/
     function buildEmergencies(data){
@@ -50,6 +51,50 @@ define([
 			globalView.view.validation.reLoad = true;
 		}
     }
+
+	/*Construye mapa de centros de ayuda*/
+	function buildCentersHelp(coordinates, data){
+		var map, config = mapResource[componentProperty.centersHelp],
+			dAttribute = componentAttribute.DATA[componentProperty.centersHelp],
+			iData, node, statusValidation, position, directionsService;
+		if(globalView.view.validation.map[componentProperty.centersHelp] === null){
+			globalView.view.validation.map[componentProperty.centersHelp] = false;
+		}
+		map = new GoogleMap(config.id);
+		map.create(null, coordinates);
+		map.createInfoWindow();
+		map.createBounds();
+		listMaps[componentProperty.centersHelp] = map;
+		globalView.view.validation.map[componentProperty.centersHelp] = true;
+		directionsService = map.createDirectionsService();
+		requestsForCentersHelp.done = 0;
+		requestsForCentersHelp.total = data.length;
+		if(data.length > 0){
+			map.addPositionToBounds(GoogleMap.createPosition(coordinates.latitude, coordinates.longitude));
+			for(iData in data){
+				node = data[iData];
+				if(validateCoordinates(node[dAttribute.latitude], node[dAttribute.longitude])){
+					createRouteForCentersHelpMap(map, directionsService, coordinates,
+						{'latitude': node[dAttribute.latitude], 'longitude': node[dAttribute.longitude]});
+				}
+			}
+		}
+		$.extend(globalView.view.components.maps, listMaps);
+	}
+
+	//Crear ruta para mapa de centros de ayuda
+	function createRouteForCentersHelpMap(map, directionsService, origin, target){
+		var directionsRenderer = map.createDirectionsRenderer();
+		map.createRouteDirectionDrivingMode(directionsService, directionsRenderer, origin, target, validateDoneRequestsForCentersHelpMap);
+	}
+
+	//Valida peticiones realizadas de centros de ayuda para encajar mapa
+	function validateDoneRequestsForCentersHelpMap(request){
+		requestsForCentersHelp.done += request;
+		if(requestsForCentersHelp.done === requestsForCentersHelp.total){
+			listMaps[componentProperty.centersHelp].fitWithMarkers();
+		}
+	}
 
 	//Obtiene objeto tipo especial
 	function getSpecialType(type){
@@ -101,7 +146,7 @@ define([
 		var context, source, template, html;
         context = {
             'title': data[attribute.type], 'status': data[attribute.status],
-            'address': data[attribute.address]
+            'address': data[attribute.address], 'date_time': data[attribute.date_time]
         };
         source = document.getElementById(resourceDiary.TEMPLATE.map_marker_info).innerHTML;
         template = Handlebars.compile(source);
@@ -120,10 +165,29 @@ define([
 		focusMapAfterLocalization(componentProperty.emergencies);
 	}
 
+	//Localiza rutas para centros de ayuda
+	function locateRouteForCentersHelp(latitude, longitude){
+		listMaps[componentProperty.centersHelp].locateMarker(latitude, longitude);
+		focusMapAfterLocalizationInModal(componentProperty.centersHelp);
+	}
+
+	//Localiza mapa con todos los marcadores para centros de ayuda
+	function locateCentersHelpMap(){
+		listMaps[componentProperty.centersHelp].fitWithMarkers();
+		focusMapAfterLocalizationInModal(componentProperty.centersHelp);
+	}
+
 	//Evento para enfocar mapa
 	function focusMapAfterLocalization(property){
 		$('html, body').animate({
 			'scrollTop': $.dataJS(mapResource[property].helper).offset().top
+		}, 1000);
+	}
+
+	//Evento para enfocar mapa en modal
+	function focusMapAfterLocalizationInModal(property){
+		$('.modal-body').animate({
+			'scrollTop': ($.dataJS(mapResource[property].helper).offset().top/2) - ($.dataJS(mapResource[property].helper).height()/2)
 		}, 1000);
 	}
 
@@ -135,9 +199,8 @@ define([
 	}
 
     return {
-		'initialize': initialize,
-        'emergencies': buildEmergencies,
-		'locateMarker': locateMarker,
-		'locateMap': locateMap
+		'initialize': initialize, 'emergencies': buildEmergencies, 'locateMarker': locateMarker,
+		'locateMap': locateMap, 'centersHelp': buildCentersHelp,
+		'locateRouteForCentersHelp': locateRouteForCentersHelp, 'locateCentersHelpMap': locateCentersHelpMap
     };
 });

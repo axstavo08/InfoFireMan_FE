@@ -15,11 +15,18 @@ define(['gmaps', 'dataview'], function(gmaps) {
         }
 
         //Construye opciones
-        function buildOptions(type){
+        function buildOptions(type, coordinates){
+            var latitude = -9.36358885706, longitude = -75.0659233683;
             markers = type;
             markerZoom = 16;
+            if(typeof coordinates !== 'undefined'){
+                if(typeof coordinates.latitude !== 'undefined' && typeof coordinates.longitude !== 'undefined'){
+                    latitude = coordinates.latitude;
+                    longitude = coordinates.longitude;
+                }
+            }
             return {
-                'center': new gmaps.LatLng(-75.0659233683,-9.36358885706),
+                'center': new gmaps.LatLng(longitude,latitude),
                 'zoom': 8,
                 'mapTypeControl': false,
                 'mapTypeId': 'roadmap'
@@ -27,8 +34,8 @@ define(['gmaps', 'dataview'], function(gmaps) {
         }
 
         //Metodo interno que construye mapa
-        this.create = function(type) {
-            map = new gmaps.Map(document.getElementById(id), buildOptions(type));
+        this.create = function(type, coordinates) {
+            map = new gmaps.Map(document.getElementById(id), buildOptions(type, coordinates));
         };
 
         //Metodo interno que devuelve objeto mapa
@@ -106,6 +113,39 @@ define(['gmaps', 'dataview'], function(gmaps) {
         this.locateMarker = function(latitude, longitude) {
             map.panTo(new gmaps.LatLng(latitude, longitude));
     		map.setZoom(markerZoom);
+        }
+
+        //Metodo interno que crea servicio de direccion
+        this.createDirectionsService = function() {
+            return new gmaps.DirectionsService();
+        }
+
+        //Metodo interno que crea el renderizador de direcciones
+        this.createDirectionsRenderer = function() {
+            var directionsRenderer = new gmaps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+            return directionsRenderer;
+        }
+
+        //Metodo interno que crea el renderizador de direcciones
+        this.createRouteDirectionDrivingMode = function(directionsService, directionsRenderer, origin, target, func) {
+            var start = new gmaps.LatLng(origin.latitude, origin.longitude),
+                end = new gmaps.LatLng(target.latitude, target.longitude), request;
+            request = {
+                'origin': start,
+                'destination': end,
+                'travelMode': gmaps.TravelMode.DRIVING
+            };
+            this.addPositionToBounds(end);
+            directionsService.route(request, function (response, status) {
+                if (status === gmaps.DirectionsStatus.OK) {
+                    directionsRenderer.setDirections(response);
+                    directionsRenderer.setMap(map);
+                } else {
+                    console.log("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
+                }
+                func(1);
+            });
         }
     }
 

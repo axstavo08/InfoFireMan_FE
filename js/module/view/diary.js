@@ -26,13 +26,19 @@ define([
             },
             'actions': {
                 'map': {
-                    'locateMarker': viewComponent.locateMarkerMap, 'locateMap': viewComponent.locateMap
+                    'locateMarker': viewComponent.locateMarkerMap, 'locateMap': viewComponent.locateMap,
+                    'locateRouteCentersHelp': viewComponent.locateRouteForCentersHelp,
+                    'locateCentersHelpMap': viewComponent.locateCentersHelpMap
                 }
             },
             'validation': {
                 'info': null, 'lastEmergencieLocalization': null, 'map': null, 'table': null, 'chart': null,
                 'reLoad': false, 'search': false, 'firstLoad': true
-            }
+            },
+            'loadGeo': {
+                'provinces': viewComponent.loadProvincesData, 'districts': viewComponent.loadDistrictsData
+            },
+            'loadCentersHelp': viewComponent.loadCentersHelpData
 		};
         publicView['message'] = {
 

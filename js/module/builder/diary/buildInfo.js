@@ -16,10 +16,11 @@ define([
     function renderLastEmergencie(data){
         var config = infoResource[componentProperty.lastEmergencie],
             dAttribute = componentAttribute.DATA[componentProperty.emergencies],
-            type = config.default.type, address = config.default.address;
+            type = config.default.type, address = config.default.address, date_time = config.default.date_time;
         if(data !== null){
             type = data[dAttribute.type];
             address = data[dAttribute.address];
+			date_time = data[dAttribute.date_time];
             if(globalView.view.validation.lastEmergencieLocalization === null){
                 globalView.view.validation.lastEmergencieLocalization = false;
             }
@@ -46,6 +47,7 @@ define([
         }
         $.dataJS(config.type).text(type);
         $.dataJS(config.address).text(address);
+		$.dataJS(config.date_time).text(date_time);
     }
 
     /*Construye boton de localizacion*/

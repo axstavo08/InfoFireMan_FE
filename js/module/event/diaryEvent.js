@@ -1,7 +1,8 @@
-/*
-* Author: Gustavo Ramos Montalvo
-* Project: info-bomberos
-*/
+/**
+ * Project Name : smartflex-client
+ * Created: 10/09/2019
+ * @author Gustavo Ramos <C19104>
+ */
 
 define([
 	'module/util/resourceFilters', 'module/util/resourceDiary', 'jquery-cookie', 'dataview',
@@ -10,7 +11,8 @@ define([
 
     var globalView, tableResource = resourceDiary.TABLE, infoResource = resourceDiary.INFO,
 		componentProperty = resourceDiary.PROPERTY, componentAttribute = resourceDiary.ATTRIBUTE,
-		viewResource = resourceDiary.VIEW, floatContainerRes = resourceDiary.FLOAT_CONTAINER;
+		viewResource = resourceDiary.VIEW, floatContainerRes = resourceDiary.FLOAT_CONTAINER,
+		modalResource = resourceDiary.MODAL;
 
     //Eventos de link
     function link(){
@@ -37,7 +39,6 @@ define([
 					$(window).trigger('close-filters-module');
 	            }
 			});
-			$(window).trigger('close-lastEmergencie-module');
 			globalView.view.load();
         });
     }
@@ -59,14 +60,13 @@ define([
         $(window).resize(function() {
     		widthWindow();
 			reAnimateAndFitComponents($.dataJS(resourceDiary.TAB.NAME).find('li.active').find('a').attr('data-property'));
-			$.dataJS(infoResource[componentProperty.typeEmergencies].root).sly('reload');
     	});
     }
 
 	//Eventos de input
 	function input(){
 		$.dataJS(tableResource[componentProperty.emergencies].util.searching).keyup(function(){
-			globalView.view.components.tables[componentProperty.emergencies].search($(this).val());
+
 		});
 	}
 
@@ -88,35 +88,9 @@ define([
 		});
 	}
 
-	//Eventos de timer
-	function timer(){
-		/*setInterval(function(){
-			//globalView.view.load();
-		}, 120000);*/
-	}
-
 	//Reanima y acomoda componentes
 	function reAnimateAndFitComponents(property){
-		if(property === resourceDiary.TAB.PROPERTY.main){
-			globalView.view.components.tables[componentProperty.emergencies].fixColumns();
-			if(globalView.view.validation.reLoad){
-				globalView.view.validation.reLoad = false;
-				globalView.view.components.maps[componentProperty.emergencies].fitWithMarkers();
-			}
-		} else if(property === resourceDiary.TAB.PROPERTY.charts){
-			globalView.view.components.charts[componentProperty.hours24].reflowAndAnimate();
-			globalView.view.components.charts[componentProperty.typeEmergencies].reflowAndAnimate();
-			globalView.view.components.tables[componentProperty.typeEmergencies].fixColumns();
-			globalView.view.components.charts[componentProperty.typeStatus].reflowAndAnimate();
-			globalView.view.components.tables[componentProperty.typeStatus].fixColumns();
-		} else if(property === resourceDiary.TAB.PROPERTY.geographyc){
-			globalView.view.components.charts[componentProperty.departments].reflowAndAnimate();
-			globalView.view.components.tables[componentProperty.departments].fixColumns();
-			globalView.view.components.charts[componentProperty.provinces].reflowAndAnimate();
-			globalView.view.components.tables[componentProperty.provinces].fixColumns();
-			globalView.view.components.charts[componentProperty.districts].reflowAndAnimate();
-			globalView.view.components.tables[componentProperty.districts].fixColumns();
-		}
+
 	}
 
 	//Eventos para componentes flotantes, a excepcion de los filtros
@@ -187,6 +161,20 @@ define([
 	    }
 	}
 
+	//Metodo para eventos de modal de vista
+	function modal(){
+		$.dataJS(modalResource.name).on('show.bs.modal', function () {
+            //console.log('modal show');
+		});
+		$.dataJS(modalResource.name).on('shown.bs.modal', function () {
+			//Valida existencia de mapa de centro de ayuda
+			if(typeof globalView.view.components.tables[componentProperty.centersHelp] !== 'undefined'
+				&& globalView.view.components.tables[componentProperty.centersHelp] !== null){
+				globalView.view.components.tables[componentProperty.centersHelp].fixColumns();
+			}
+		});
+	}
+
 	//Inicia eventos
 	function initialize(publicView){
         globalView = publicView;
@@ -197,8 +185,8 @@ define([
 		input();
         trigger();
 		tab();
-		timer();
 		floatContainer();
+		modal();
 	}
 
     return {

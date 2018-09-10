@@ -176,6 +176,10 @@
     }
 }
 
+.map-routes {
+    height: 400px;
+}
+
 /*@-webkit-keyframes pulse{
     to {
 		transform: scale(0.7);

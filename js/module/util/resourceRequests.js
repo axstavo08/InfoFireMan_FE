@@ -17,7 +17,8 @@ define({
 		'type_status_information': '/Stats/Status',
 		'departments_information': '/Stats/Departaments/{{dep}}',
 		'provinces_information': '/Stats/Provinces/{{dep}}',
-		'districts_information': '/Stats/Districts/{{prov}}'
+		'districts_information': '/Stats/Districts/{{prov}}',
+		'centers_help_information': "/CenterHelps/{{emergencie}}"
 	},
 	'property': {
 		'emergencies_information': "emergencies_information",
@@ -26,7 +27,8 @@ define({
 		'type_status_information':  "type_status_information",
 		'departments_information':  "departments_information",
 		'provinces_information':  "provinces_information",
-		'districts_information':  "districts_information"
+		'districts_information':  "districts_information",
+		'centers_help_information':  "centers_help_information"
 	},
     'parameters': {
         'auth': {

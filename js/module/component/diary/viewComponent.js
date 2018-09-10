@@ -8,20 +8,21 @@ define([
 	'module/util/resourceDiary', 'module/util/resourceRequests', 'objectUtil',
 	'module/builder/diary/buildTable', 'module/builder/diary/buildMap',
 	'module/builder/diary/buildChart', 'module/builder/diary/buildInfo',
-	'module/builder/diary/buildOverlay'
+	'module/builder/diary/buildOverlay', 'module/util/resourceFilters'
 ], function(imessages, diaryAjax, resourceDiary, resourceRequest, objUtil, TableBuilder,
-			MapBuilder, ChartBuilder, InfoBuilder, OverlayBuilder) {
+			MapBuilder, ChartBuilder, InfoBuilder, OverlayBuilder, resourceFilters) {
 
 	var globalView, requestProperty = resourceRequest.property, requestStatus = resourceRequest.status,
 		componentProperty = resourceDiary.PROPERTY, componentAttribute = resourceDiary.ATTRIBUTE,
-		overlayResource = resourceDiary.OVERLAY, infoResource = resourceDiary.INFO;
+		overlayResource = resourceDiary.OVERLAY, infoResource = resourceDiary.INFO,
+		filtersProperty = resourceFilters.PROPERTY;
 
 	/*Carga data*/
 	function loadData() {
 		globalView.request.list = buildListRequests();
-        console.log(globalView.request.list);
+        //console.log(globalView.request.list);
 		globalView.request.counter = buildRequestCounter(Object.keys(globalView.request.list).length);
-        console.log(globalView.request.counter);
+        //console.log(globalView.request.counter);
 		doEmergenciesSearch(globalView.request.list[requestProperty.emergencies_information]);
 		do24HoursSearch(globalView.request.list[requestProperty.hours_24_information]);
 		doTypeEmergenciesSearch(globalView.request.list[requestProperty.type_emergencies_information]);
@@ -47,7 +48,6 @@ define([
         }
         return listRequests;
 	}
-
 
 	/*Construye objeto contador de peticiones*/
 	function buildRequestCounter(total){
@@ -289,6 +289,73 @@ define([
 		OverlayBuilder.initialize(publicView);
 	}
 
+	/*Carga data de provincias por departamento*/
+	function loadProvincesDataByDepartment(id, $buttons){
+		OverlayBuilder.loadOverlay(overlayResource[componentProperty.provinces].container);
+		filters[filtersProperty.PROVINCE.NAME] = id;
+		//console.log(filters[filtersProperty.PROVINCE.NAME]);
+		diaryAjax.getProvincesInformation(filters).done(function(data, textStatus, jqXHR) {
+			ChartBuilder.provinces(data);
+			TableBuilder.provinces(data);
+			OverlayBuilder.removeLoadOverlay(overlayResource[componentProperty.provinces].container);
+			$buttons.removeClass('disabled');
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+			OverlayBuilder.overlay(overlayResource[componentProperty.provinces].container);
+        });
+	}
+
+	/*Carga data de distritos por provincia*/
+	function loadDistrictsDataByProvince(id, $buttons){
+		OverlayBuilder.loadOverlay(overlayResource[componentProperty.districts].container);
+		filters[filtersProperty.PROVINCE.NAME] = id;
+		//console.log(filters[filtersProperty.PROVINCE.NAME]);
+		diaryAjax.getDistrictsInformation(filters).done(function(data, textStatus, jqXHR) {
+			ChartBuilder.districts(data);
+			TableBuilder.districts(data);
+			OverlayBuilder.removeLoadOverlay(overlayResource[componentProperty.districts].container);
+			$buttons.removeClass('disabled');
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+			OverlayBuilder.removeLoadOverlay(overlayResource[componentProperty.districts].container);
+			OverlayBuilder.overlay(overlayResource[componentProperty.districts].container);
+        });
+	}
+
+	/*Carga data de centros de ayuda por emergencia*/
+	function loadCentersHelpByEmergencie(id, coordinates){
+		OverlayBuilder.loadOverlay(overlayResource[componentProperty.centersHelp].containerMap);
+		OverlayBuilder.loadOverlay(overlayResource[componentProperty.centersHelp].containerTable);
+		diaryAjax.getCentersHelpInformation(id).done(function(data, textStatus, jqXHR) {
+			MapBuilder.centersHelp(coordinates, data);
+			TableBuilder.centersHelp(data);
+			OverlayBuilder.removeLoadOverlay(overlayResource[componentProperty.centersHelp].containerMap);
+			OverlayBuilder.removeLoadOverlay(overlayResource[componentProperty.centersHelp].containerTable);
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+			OverlayBuilder.removeLoadOverlay(overlayResource[componentProperty.centersHelp].containerMap);
+			OverlayBuilder.overlay(overlayResource[componentProperty.centersHelp].containerMap);
+			OverlayBuilder.removeLoadOverlay(overlayResource[componentProperty.centersHelp].containerTable);
+			OverlayBuilder.overlay(overlayResource[componentProperty.centersHelp].containerTable);
+        });
+	}
+
+	/*Metodo de mapa para localizar ruta de centro de ayuda*/
+	function locateRouteForCentersHelp(latitude, longitude){
+		MapBuilder.locateRouteForCentersHelp(latitude, longitude);
+	}
+
+	/*Metodo de mapa para localizar mapa de centro de ayuda*/
+	function locateCentersHelpMap(){
+		MapBuilder.locateCentersHelpMap();
+	}
+
 	/*Metodo publico*/
 	function initialize(publicView) {
 		globalView =  publicView;
@@ -297,9 +364,9 @@ define([
 	}
 
 	return {
-		'initialize': initialize,
-        'loadData': loadData,
-		'locateMarkerMap': locateMarkerMap,
-		'locateMap': locateMap
+		'initialize': initialize, 'loadData': loadData, 'locateMarkerMap': locateMarkerMap,
+		'locateMap': locateMap, 'loadProvincesData': loadProvincesDataByDepartment,
+		'loadDistrictsData': loadDistrictsDataByProvince, 'loadCentersHelpData': loadCentersHelpByEmergencie,
+		'locateRouteForCentersHelp': locateRouteForCentersHelp, 'locateCentersHelpMap': locateCentersHelpMap
 	};
 });

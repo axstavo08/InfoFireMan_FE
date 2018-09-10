@@ -84,6 +84,7 @@
                                     <div class="row">
                                         <div id="contContentAddress" data-js="contContentAddress" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <h5 id="typeLastEmergencie" data-js="typeLastEmergencie">{{Type_Last_Emergencie}}</h5>
+                                            <h5 id="datetimeLastEmergencie" data-js="datetimeLastEmergencie">{{Datetime_Last_Emergencie}}</h5>
                                             <span id="addressLastEmergencie" data-js="addressLastEmergencie">{{Address_Last_Emergencie}}</span>
                                         </div>
                                     </div>
@@ -271,6 +272,7 @@
                 															<th>Departamento</th>
                 															<th>Total</th>
                 															<th>%</th>
+                                                                            <th></th>
                 														</tr>
                 													</thead>
                 													<tbody>
@@ -303,6 +305,7 @@
                 															<th>Provincia</th>
                 															<th>Total</th>
                 															<th>%</th>
+                                                                            <th></th>
                 														</tr>
                 													</thead>
                 													<tbody>
@@ -360,7 +363,7 @@
                     </div>
                     <strong>
                         &copy; <span data-js="currentYear">[Current_Year]</span>
-                        <a class="footer-text footer-highlight" href="#">Info Bomberos</a>.
+                        <a class="footer-text footer-highlight" href="#">Info Bomberos</a>
                     </strong>
                 </div>
             </footer>
@@ -381,10 +384,56 @@
      <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title modal-header-title">Detalle de rutas</h4>
+          <h4 class="modal-title modal-header-title">Centros de ayuda de emergencia</h4>
         </div>
         <div class="modal-body modal-body-cust modal-body-color">
-
+            <div id="mapCentersHelpHelperContainer" data-js="mapCentersHelpHelperContainer" class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div id="mapCentersHelpOverlayContainer" data-js="mapCentersHelpOverlayContainer" data-overlay="hide" class="box box-default box-cus">
+                        <div class="box-header">
+                            <h3 class="box-title textOverflow-boxTitles"><i class="fa fa-globe" aria-hidden="true"></i><span class="space-subtitle">Mapa</span></h3>
+                            <div class="box-tools">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div id="mCentersHelp" data-js="mCentersHelp" class="map-routes"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div id="tableCentersHelpOverlayContainer" data-js="tableCentersHelpOverlayContainer" data-overlay="hide" class="box box-default box-cus">
+                        <div class="box-header">
+                            <h3 class="box-title textOverflow-boxTitles"><i class="fa fa-table" aria-hidden="true"></i><span class="space-subtitle">Listado</span></h3>
+                            <div class="box-tools">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <table id="tCentersHelp" data-js="tCentersHelp" class="cell-border display table table-bordered table-hover" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Nombre</th>
+                                                <th>Tipo</th>
+                                                <th>Direcci&oacute;n</th>
+                                                <th>Distancia</th>
+                                                <th>Duraci&oacute;n</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -429,6 +478,7 @@
         <div>
             <div class="map-iw-content-status">{{status}}</div>
             <div>{{address}}</div>
+            <div>{{date_time}}</div>
         </div>
     </div>
 </script>
@@ -475,9 +525,25 @@
 
 <!--Table Routes Column Template-->
 <script id="temp-table-routes-column" type="text/x-handlebars-template">
-    <button type="button" class="btn btn-xs bg-orange component-localization" data-js="{{name}}">
+    <button type="button" class="btn btn-xs bg-orange component-localization{{disable-style}}" data-js="{{name}}"
+        data-emergencie="{{emergencie}}" data-lon="{{longitude}}" data-lat="{{latitude}}">
         <i class="fa fa-map" aria-hidden="true"></i>
     </button>
+</script>
+
+<!--Table Search Column Template-->
+<script id="temp-table-search-column" type="text/x-handlebars-template">
+    <button id="{{identity}}" type="button" class="btn btn-xs bg-primary" data-js="{{name}}" data-id="{{id}}"
+        data-type="{{type}}">
+        <i class="fa fa-search" aria-hidden="true"></i>
+    </button>
+</script>
+
+<!--Overlay Load Container Template-->
+<script id="temp-overlay-load-container" type="text/x-handlebars-template">
+    <div class="overlay">
+        <i class="fa fa-refresh fa-spin"></i>
+    </div>
 </script>
 
 <script type="text/javascript">
@@ -485,7 +551,7 @@
     //Configuracion inicial para modulo
     var config = {};
     config.module = "diary";
-    config.urlWs = "http://infobomberos.com/InfoBombWS_v2.0";
+    config.urlWs = "http://infobomberos.com/InfoBombWS";
 
     //Se inicializa requireJS en hoja js
     require(['template', 'module/view/diary'], function(template, app) {

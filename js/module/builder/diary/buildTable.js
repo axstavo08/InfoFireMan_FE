@@ -11,7 +11,8 @@ define([
     var globalView, localizationStructure, listTables = {}, tableResource = resourceDiary.TABLE,
         componentProperty = resourceDiary.PROPERTY, componentResource = resourceDiary.COMPONENT,
 		componentAttribute = resourceDiary.ATTRIBUTE, componentAnimation = resourceDiary.ANIMATION,
-		statusStructure, routesStructure, modalResource = resourceDiary.MODAL;
+		statusStructure, routesStructure, modalResource = resourceDiary.MODAL, searchStructure,
+		overlayResource = resourceDiary.OVERLAY;
 
 	/*Construye tabla de emergencias*/
     function buildEmergencies(data){
@@ -75,8 +76,23 @@ define([
 					'targets': config.util.columnDefs.routes,
 					'render': function(data, type, row, meta) {
 						var structure = routesStructure, configRoutes = componentResource.routes,
-							name = configRoutes.property.name;
-						return structure.replace(configRoutes.template.name, name);
+							name = configRoutes.property.unknown, defaultStyle = configRoutes.property.default_style,
+							latitude = configRoutes.property.unknown, longitude = configRoutes.property.unknown,
+							emergencie = configRoutes.property.unknown;
+						if(row[dAttribute.latitude] !== null && row[dAttribute.longitude] !== null){
+							latitude = row[dAttribute.latitude];
+							longitude = row[dAttribute.longitude];
+							emergencie = row[dAttribute.id];
+							if(row[dAttribute.latitude] !== 0 && row[dAttribute.longitude] !== 0){
+								name = configRoutes.property.name;
+								defaultStyle = "";
+							}
+						}
+						return structure.replace(configRoutes.template.name, name)
+										.replace(configRoutes.template.disable_style, defaultStyle)
+										.replace(configRoutes.template.longitude, longitude)
+										.replace(configRoutes.template.latitude, latitude)
+										.replace(configRoutes.template.emergencie, emergencie);
 					}
 				}
 			];
@@ -147,20 +163,23 @@ define([
 			$.extend(tOptions, config.options);
 			tOptions.oLanguage = globalDatatable.language();
 			tOptions.data = data;
-			tOptions.columnDefs = [
-				{
-					'targets': config.util.columnDefs.search,
-					'render': function(data, type, row, meta) {
-						var structure = routesStructure, configRoutes = componentResource.routes,
-							name = configRoutes.property.name;
-						return structure.replace(configRoutes.template.name, name);
-					}
+			tOptions.columnDefs.push({
+				'targets': config.util.columnDefs.search,
+				'render': function(data, type, row, meta) {
+					var structure = searchStructure, configSearch = componentResource.search,
+						name = configSearch.property.name, id = row[config.util.property.id],
+						type = configSearch.type.department;
+					return structure.replace(configSearch.template.name, name)
+									.replace(configSearch.template.id, id)
+									.replace(configSearch.template.type, type)
+									.replace(configSearch.template.identity, name);
 				}
-			];
+			});
 			listTables[componentProperty.departments] = new DataTable($table, tOptions);
 			listTables[componentProperty.departments].createAnGet();
 			$.extend(globalView.view.components.tables, listTables);
 			globalView.view.validation.table[componentProperty.departments] = true;
+			initializeGeoEvents(componentProperty.departments);
 		}
 	}
 
@@ -178,10 +197,23 @@ define([
 			$.extend(tOptions, config.options);
 			tOptions.oLanguage = globalDatatable.language();
 			tOptions.data = data;
+			tOptions.columnDefs.push({
+				'targets': config.util.columnDefs.search,
+				'render': function(data, type, row, meta) {
+					var structure = searchStructure, configSearch = componentResource.search,
+						name = configSearch.property.name, id = row[config.util.property.id],
+						type = configSearch.type.province;
+					return structure.replace(configSearch.template.name, name)
+									.replace(configSearch.template.id, id)
+									.replace(configSearch.template.type, type)
+									.replace(configSearch.template.identity, name);
+				}
+			});
 			listTables[componentProperty.provinces] = new DataTable($table, tOptions);
 			listTables[componentProperty.provinces].createAnGet();
 			$.extend(globalView.view.components.tables, listTables);
 			globalView.view.validation.table[componentProperty.provinces] = true;
+			initializeGeoEvents(componentProperty.provinces);
 		}
 	}
 
@@ -205,6 +237,63 @@ define([
 			globalView.view.validation.table[componentProperty.districts] = true;
 		}
 	}
+
+	/*Construye tabla de centros de ayuda*/
+    function buildCentersHelp(data){
+		var config = tableResource[componentProperty.centersHelp], $table, idTable, tOptions = {},
+			dAttribute = componentAttribute.DATA[componentProperty.centersHelp];
+		if(globalView.view.validation.table[componentProperty.centersHelp] === null){
+			globalView.view.validation.table[componentProperty.centersHelp] = false;
+		}
+		idTable = config.id;
+        if (DataTable.existsTable(idTable) && globalView.view.validation.table[componentProperty.centersHelp]) {
+			listTables[componentProperty.centersHelp].updateRows(data);
+        } else {
+			$table = $.dataJS(idTable);
+            $.extend(tOptions, config.options);
+			tOptions.oLanguage = globalDatatable.language();
+			tOptions.data = data;
+			tOptions.columnDefs = [
+				{
+					'targets': config.util.columnDefs.localization,
+					'render': function(data, type, row, meta) {
+						var structure = localizationStructure, configLocalization = componentResource.localization,
+							name = configLocalization.property.unknown, defaultStyle = configLocalization.property.default_style,
+							latitude = configLocalization.property.unknown, longitude = configLocalization.property.unknown,
+							animation = componentAnimation.disabled;
+						if(row[dAttribute.latitude] !== null && row[dAttribute.longitude] !== null){
+							latitude = row[dAttribute.latitude];
+							longitude = row[dAttribute.longitude];
+							if(row[dAttribute.latitude] !== 0 && row[dAttribute.longitude] !== 0){
+								name = configLocalization.property.name_CH;
+								defaultStyle = "";
+								animation = componentAnimation.zoom_map;
+							}
+						}
+						return structure.replace(configLocalization.template.name, name)
+										.replace(configLocalization.template.latitude, latitude)
+										.replace(configLocalization.template.longitude, longitude)
+										.replace(configLocalization.template.disable_style, defaultStyle)
+										.replace(configLocalization.template.animation, animation);
+					}
+				},
+				{
+					'targets': config.util.columnDefs.align,
+					'createdCell': function(td, cellData, rowData, row, col){
+						$(td).addClass(config.util.style.text_left);
+					}
+				}
+			];
+			tOptions.initComplete = function(settings, json) {
+				initializeLocalizationEventForCentersHelp();
+			}
+			listTables[componentProperty.centersHelp] = new DataTable($table, tOptions);
+			listTables[componentProperty.centersHelp].createAnGet();
+			$.extend(globalView.view.components.tables, listTables);
+			globalView.view.validation.table[componentProperty.centersHelp] = true;
+			initializeEventsForCentersHelp();
+		}
+    }
 
 	/*Construye estructura para localizacion de marcadores*/
 	function buildStructureToLocateMarkers(){
@@ -237,9 +326,25 @@ define([
 	function buildStructureToRoutesMarkers(){
 		var context, source, template, html;
         context = {
-			'name': componentResource.routes.template.name
+			'name': componentResource.routes.template.name,
+			'disable-style': componentResource.routes.template.disable_style,
+			'longitude': componentResource.routes.template.longitude,
+			'latitude': componentResource.routes.template.latitude,
+			'emergencie': componentResource.routes.template.emergencie
         };
         source = document.getElementById(resourceDiary.TEMPLATE.table_routes_column).innerHTML;
+        template = Handlebars.compile(source);
+		return template(context);
+	}
+
+	/*Construye estructura para buscador*/
+	function buildStructureToSearch(){
+		var context, source, template, html;
+        context = {
+			'name': componentResource.search.template.name, 'id': componentResource.search.template.id,
+			'type': componentResource.search.template.type, 'identity': componentResource.search.template.identity,
+        };
+        source = document.getElementById(resourceDiary.TEMPLATE.table_search_column).innerHTML;
         template = Handlebars.compile(source);
 		return template(context);
 	}
@@ -272,7 +377,8 @@ define([
 		$.dataJS(componentResource.routes.property.name).off('click');
 		$.dataJS(componentResource.routes.property.name).on('click', function() {
 			var $element = $(this);
-			console.log("open modal");
+			globalView.view.loadCentersHelp($element.attr('data-emergencie'),
+						{'latitude': parseFloat($element.attr('data-lat')), 'longitude': parseFloat($element.attr('data-lon'))});
 			$.dataJS(modalResource.name).modal('show');
 		});
 	}
@@ -289,6 +395,78 @@ define([
 		$.dataJS(componentResource.localization.property.nameUnique).attr('data-animation', componentAnimation.zoom_map);
 	}
 
+	/*Inicializa eventos para tablas geograficos*/
+	function initializeGeoEvents(table) {
+		listTables[table].get().on('draw.dt', function () {
+			initializeSearchGeoEvent();
+		});
+	}
+
+	/*Inicializa evento click para boton de busqueda geografica*/
+	function initializeSearchGeoEvent() {
+		//Boton geografico
+		$.dataJS(componentResource.search.property.name).off('click');
+		$.dataJS(componentResource.search.property.name).on('click', function() {
+			var $element = $(this), id = $element.attr('data-id'), type = $element.attr('data-type'),
+				attrType = componentResource.search.type, $group = componentResource.search.property.group;
+			switch(type){
+				case attrType.department:
+					$group = $group.replace(componentResource.search.template.type,type);
+					$($group).addClass('disabled');
+					centerScrollViewToTargetContainer(overlayResource.provinces.container.name);
+					globalView.view.loadGeo.provinces(id, $($group));
+				break;
+				case attrType.province:
+					$group = $group.replace(componentResource.search.template.type,type);
+					$($group).addClass('disabled');
+					centerScrollViewToTargetContainer(overlayResource.districts.container.name);
+					globalView.view.loadGeo.districts(id, $($group));
+				break;
+			}
+		});
+	}
+
+	/*Centra scroll a contenedor destino*/
+	function centerScrollViewToTargetContainer(name){
+		$('html, body').animate({
+			'scrollTop': $.dataJS(name).offset().top
+		}, 1000);
+	}
+
+	/*Inicializa eventos para tabla de centros de ayuda*/
+	function initializeEventsForCentersHelp() {
+		listTables[componentProperty.centersHelp].get().on('draw.dt', function () {
+			initializeLocalizationEventForCentersHelp();
+		});
+	}
+
+	/*Inicializa evento click para boton de localizacion de tabla de centros de ayuda*/
+	function initializeLocalizationEventForCentersHelp() {
+		//Boton de localizacion
+		$.dataJS(componentResource.localization.property.name_CH).off('click');
+		$.dataJS(componentResource.localization.property.name_CH).on('click', function() {
+			var $element = $(this), animation = $element.attr('data-animation');
+			setInactiveStatusLocalizationButtonsForCentersHelp();
+			if(animation === componentAnimation.zoom_map) {
+				$element.removeClass(componentResource.localization.status.inactive)
+						.removeClass(componentResource.localization.status.inactive_extra)
+						.addClass(componentResource.localization.status.active);
+				$element.attr('data-animation', componentAnimation.zoom_marker);
+				globalView.view.actions.map.locateRouteCentersHelp($element.attr('data-lat'), $element.attr('data-lon'));
+			} else {
+				globalView.view.actions.map.locateCentersHelpMap();
+			}
+		});
+	}
+
+	/*Cambia a estado inactivo botones de localizacion para centros de ayuda*/
+	function setInactiveStatusLocalizationButtonsForCentersHelp(){
+		$.dataJS(componentResource.localization.property.name_CH).removeClass(componentResource.localization.status.active)
+				.addClass(componentResource.localization.status.inactive)
+				.addClass(componentResource.localization.status.inactive_extra);
+		$.dataJS(componentResource.localization.property.name_CH).attr('data-animation', componentAnimation.zoom_map);
+	}
+
 	/*Inicializa variables*/
 	function initialize(publicView){
 		globalView = publicView;
@@ -302,15 +480,12 @@ define([
 		localizationStructure = buildStructureToLocateMarkers();
 		statusStructure = buildStructureToTypeEmergencieStatus();
 		routesStructure = buildStructureToRoutesMarkers();
+		searchStructure = buildStructureToSearch();
 	}
 
     return {
-		'initialize': initialize,
-        'emergencies': buildEmergencies,
-		'typeEmergencies': buildTypeEmergencies,
-		'typeStatus': buildTypeStatus,
-		'departments': buildDepartments,
-		'provinces': buildProvinces,
-		'districts': buildDistricts
+		'initialize': initialize, 'emergencies': buildEmergencies, 'typeEmergencies': buildTypeEmergencies,
+		'typeStatus': buildTypeStatus, 'departments': buildDepartments, 'provinces': buildProvinces,
+		'districts': buildDistricts, 'centersHelp': buildCentersHelp,
     };
 });

@@ -26,44 +26,63 @@ define(['i18n!js/nls/imessages', 'module/util/resourceRequests', 'module/util/re
 
     //Acciones para carga satisfactoria
     function doActionsForSuccessfulLoad(dataTypeEmergency, dataStatus, dataDepartments/*, dataProvinces*/){
-        var filterProcessedData;
+        var filterProcessedData, existData;
         filtersData = {};
         dataDependency = {};
         filtersComponent.select = {};
         initializeSelectedAndDefaultFilters();
-        if(dataTypeEmergency[1] === resourceRequest.status.success) {
-            filterProcessedData = processFilterData(dataTypeEmergency[0], filtersDependency.TYPE_EMERGENCY);
-            filtersData[filtersProperty.TYPE_EMERGENCY.NAME] = filterProcessedData.items;
-            filtersSelected[filtersProperty.TYPE_EMERGENCY.NAME] = getInitialValuesOfFilters(filtersData[filtersProperty.TYPE_EMERGENCY.NAME]);
-        }
-        if(dataStatus[1] === resourceRequest.status.success) {
-            filterProcessedData = processFilterData(dataStatus[0], filtersDependency.TYPE_STATUS);
-            filtersData[filtersProperty.TYPE_STATUS.NAME] = filterProcessedData.items;
-            filtersSelected[filtersProperty.TYPE_STATUS.NAME] = getInitialValuesOfFilters(filtersData[filtersProperty.TYPE_STATUS.NAME]);
-        }
-        if(dataDepartments[1] === resourceRequest.status.success) {
-            filterProcessedData = processFilterData(dataDepartments[0], filtersDependency.DEPARTMENT);
-            if(filterProcessedData.parent !== null){
-                dataDependency[filtersProperty.DEPARTMENT.NAME] = filterProcessedData.parent;
+        existData = validateExistsData(dataTypeEmergency[0], dataStatus[0], dataDepartments[0]);
+        if(existData){
+            if(dataTypeEmergency[1] === resourceRequest.status.success) {
+                filterProcessedData = processFilterData(dataTypeEmergency[0], filtersDependency.TYPE_EMERGENCY);
+                filtersData[filtersProperty.TYPE_EMERGENCY.NAME] = filterProcessedData.items;
+                filtersSelected[filtersProperty.TYPE_EMERGENCY.NAME] = getInitialValuesOfFilters(filtersData[filtersProperty.TYPE_EMERGENCY.NAME]);
             }
-            filtersData[filtersProperty.DEPARTMENT.NAME] = filterProcessedData.items;
-            defaultFilters[filtersProperty.DEPARTMENT.NAME] = getInitialValuesOfFilters(filtersData[filtersProperty.DEPARTMENT.NAME]);
-            filtersSelected[filtersProperty.DEPARTMENT.NAME] = defaultFilters[filtersProperty.DEPARTMENT.NAME];
-        }
-        /*if(dataProvinces[1] === resourceRequest.status.success) {
-            filterProcessedData = processFilterData(dataProvinces[0], filtersDependency.PROVINCE,
-                                    dataDependency[filtersProperty.DEPARTMENT.NAME]);
-            filtersData[filtersProperty.PROVINCE.NAME] = filterProcessedData.items;
+            if(dataStatus[1] === resourceRequest.status.success) {
+                filterProcessedData = processFilterData(dataStatus[0], filtersDependency.TYPE_STATUS);
+                filtersData[filtersProperty.TYPE_STATUS.NAME] = filterProcessedData.items;
+                filtersSelected[filtersProperty.TYPE_STATUS.NAME] = getInitialValuesOfFilters(filtersData[filtersProperty.TYPE_STATUS.NAME]);
+            }
+            if(dataDepartments[1] === resourceRequest.status.success) {
+                filterProcessedData = processFilterData(dataDepartments[0], filtersDependency.DEPARTMENT);
+                if(filterProcessedData.parent !== null){
+                    dataDependency[filtersProperty.DEPARTMENT.NAME] = filterProcessedData.parent;
+                }
+                filtersData[filtersProperty.DEPARTMENT.NAME] = filterProcessedData.items;
+                defaultFilters[filtersProperty.DEPARTMENT.NAME] = getInitialValuesOfFilters(filtersData[filtersProperty.DEPARTMENT.NAME]);
+                filtersSelected[filtersProperty.DEPARTMENT.NAME] = defaultFilters[filtersProperty.DEPARTMENT.NAME];
+            }
+            /*if(dataProvinces[1] === resourceRequest.status.success) {
+                filterProcessedData = processFilterData(dataProvinces[0], filtersDependency.PROVINCE,
+                                        dataDependency[filtersProperty.DEPARTMENT.NAME]);
+                filtersData[filtersProperty.PROVINCE.NAME] = filterProcessedData.items;
+                defaultFilters[filtersProperty.PROVINCE.NAME] = resourceFilters.DEFAULT.PROVINCE;
+                filtersSelected[filtersProperty.PROVINCE.NAME] = defaultFilters[filtersProperty.PROVINCE.NAME];
+            }*/
+            filtersData[filtersProperty.PROVINCE.NAME] = [];
             defaultFilters[filtersProperty.PROVINCE.NAME] = resourceFilters.DEFAULT.PROVINCE;
             filtersSelected[filtersProperty.PROVINCE.NAME] = defaultFilters[filtersProperty.PROVINCE.NAME];
-        }*/
-        filtersData[filtersProperty.PROVINCE.NAME] = [];
-        defaultFilters[filtersProperty.PROVINCE.NAME] = resourceFilters.DEFAULT.PROVINCE;
-        filtersSelected[filtersProperty.PROVINCE.NAME] = defaultFilters[filtersProperty.PROVINCE.NAME];
-        buildSelects();
-        buildDate();
-        createAction();
-        globalView.view.load();
+            buildSelects();
+            buildDate();
+            createAction();
+            globalView.view.load();
+        } else {
+            //console.log("no hay data");
+        }
+    }
+
+    //Valida existencia de data
+    function validateExistsData(data1, data2, data3){
+        if(data1.length === 0){
+            return false;
+        }
+        if(data2.length === 0){
+            return false;
+        }
+        if(data3.length === 0){
+            return false;
+        }
+        return true;
     }
 
     //Acciones para carga erronea
